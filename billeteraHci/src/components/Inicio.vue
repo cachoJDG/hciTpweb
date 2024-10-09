@@ -24,6 +24,7 @@
           </v-col>
         </v-row>
       </div>
+      <!-- lista de movimientos, es muy largo xq meti muchos items iguales (cada item deberia ser un componente)-->
       <div>
         <v-container>
           <v-card class="rounded-xl pr-2 overflow-auto" color="white">
