@@ -4,29 +4,31 @@
         <h1>Iniciar Sesión</h1>
         <form @submit.prevent="submitForm">
           <div class="input-field">
-            <label for="email">Email</label>
+            <label for="email">Correo</label>
             <input
               type="email"
               id="email"
               v-model="email"
               :class="{ error: emailError }"
-              placeholder="Enter your email"
+              placeholder="Ingresa tu correo"
             />
             <span v-if="emailError" class="error-message">{{ emailError }}</span>
           </div>
   
           <div class="input-field">
             <label for="password">Contraseña</label>
-            <input
-              :type="showPassword ? 'text' : 'password'"
-              id="password"
-              v-model="password"
-              :class="{ error: passwordError }"
-              placeholder="Enter your password"
-            />
-            <button type="button" @click="togglePassword" class="show-password">
-              {{ showPassword ? 'Hide' : 'Show' }}
-            </button>
+            <div class="password-wrapper">
+              <input
+                :type="showPassword ? 'text' : 'password'"
+                id="password"
+                v-model="password"
+                :class="{ error: passwordError }"
+                placeholder="Ingresa tu contraseña"
+              />
+              <button type="button" @click="togglePassword" class="show-password">
+                {{ showPassword ? 'Mostrar' : 'Ocultar' }}
+              </button>
+            </div>
             <span v-if="passwordError" class="error-message">{{ passwordError }}</span>
           </div>
   
@@ -36,55 +38,54 @@
     </div>
   </template>
   
-<script setup>
-import { ref } from 'vue';
-import"../styles/login.css";
-
-const email = ref('');
-const password = ref('');
-const showPassword = ref(false);
-const emailError = ref('');
-const passwordError = ref('');
-
-const togglePassword = () => {
+  <script setup>
+  import { ref } from 'vue';
+  
+  const email = ref('');
+  const password = ref('');
+  const showPassword = ref(false);
+  const emailError = ref('');
+  const passwordError = ref('');
+  
+  const togglePassword = () => {
     showPassword.value = !showPassword.value;
-};
-
-const validateEmail = () => {
+  };
+  
+  const validateEmail = () => {
     if (!email.value) {
-        return 'Email is required';
+      return 'Email is required';
     }
     return '';
-};
-
-const validatePassword = () => {
+  };
+  
+  const validatePassword = () => {
     const hasUppercase = /[A-Z]/.test(password.value);
     const hasNumber = /\d/.test(password.value);
     if (!password.value) {
-        return 'Password is required';
+      return 'Password is required';
     } else if (password.value.length < 9) {
-        return 'Password must be at least 9 characters';
+      return 'Password must be at least 9 characters';
     } else if (!hasUppercase) {
-        return 'Password must contain at least one capital letter';
+      return 'Password must contain at least one capital letter';
     } else if (!hasNumber) {
-        return 'Password must contain at least one number';
+      return 'Password must contain at least one number';
     }
     return '';
-};
-
-const submitForm = () => {
+  };
+  
+  const submitForm = () => {
     emailError.value = validateEmail();
     passwordError.value = validatePassword();
-
+  
     if (!emailError.value && !passwordError.value) {
-        alert('Login successful!');
-        // Add login logic here
+      alert('Login successful!');
+      // Add login logic here
     }
-};
-</script>
-
-<style scoped>
-.login-container {
+  };
+  </script>
+  
+  <style scoped>
+  .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,6 +111,9 @@ const submitForm = () => {
   
   .input-field {
     margin-bottom: 1.5rem;
+  }
+  
+  .password-wrapper {
     position: relative;
   }
   
@@ -142,7 +146,8 @@ const submitForm = () => {
   .show-password {
     position: absolute;
     right: 10px;
-    top: 100%;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     border: none;
     color: #333;
@@ -164,4 +169,5 @@ const submitForm = () => {
   .submit-button:hover {
     background-color: #6a0dad;
   }
-</style>
+  </style>
+  
