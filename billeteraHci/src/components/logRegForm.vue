@@ -2,22 +2,25 @@
     <div class="background">
         <v-container max-width="700">
             <v-card class="pa-4" color="white">
-                <v-card-title class="title">Iniciar Sesión</v-card-title>
+                <v-card-title class="title">{{ title }}</v-card-title>
                 <v-form @submit.prevent="handleSubmit">
+                    <slot name="form-fields"></slot> <!-- Aquí van los campos adicionales -->
+                    <!-- Campo de Email -->
                     <v-text-field
-                        type="email"
-                        label="Correo"
-                        :rules="[v => !!v || 'Correo es requerido']"
+                        label="Correo Electrónico"
+                        :rules="[v => !!v || 'Correo es requerido', v => /.+@.+/.test(v) || 'Debe contener @']"
                         outlined
-                        class="mb-4"
                         color="purple"
+                        class="mb-4"
                         prepend-inner-icon="mdi-email"
                     ></v-text-field>
+                    <!-- Campo de Contraseña -->
                     <v-text-field
                         :type="showPassword ? 'text' : 'password'"
                         label="Contraseña"
-                        :rules="[v => !!v || 'Contraseña es requerida']"
+                        :rules="[v => !!v || 'Contraseña es requerida', v => v.length >= 9 || 'Debe tener al menos 9 caracteres']"
                         outlined
+                        color="purple"
                         class="mb-4"
                         prepend-inner-icon="mdi-lock"
                         :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
@@ -31,9 +34,12 @@
                         :disabled="loading"
                         :class="{ 'loading-btn': loading }"
                     >
-                        <template v-if="!loading">Iniciar Sesión</template>
+                        <template v-if="!loading">{{ buttonText }}</template>
                     </v-btn>
                 </v-form>
+                <div class="disclaimer">
+                    <span><slot name="disclaimer"></slot></span>
+                </div>
             </v-card>
         </v-container>
     </div>
@@ -41,6 +47,17 @@
 
 <script setup>
 import { ref } from 'vue';
+
+const props = defineProps({
+  title: {
+    type: String,
+    required: true
+  },
+  buttonText: {
+    type: String,
+    required: true
+  }
+}); 
 
 const showPassword = ref(false);
 const loading = ref(false);
@@ -51,11 +68,9 @@ const togglePasswordVisibility = () => {
 
 const handleSubmit = () => {
     loading.value = true;
-    // Simula una acción de carga
     setTimeout(() => {
         loading.value = false;
-        // Aquí puedes agregar la lógica para manejar el inicio de sesión
-    }, 2000); // Simula una carga de 2 segundos
+    }, 2000);
 };
 </script>
 
@@ -92,6 +107,11 @@ const handleSubmit = () => {
 .title {
     text-align: center;
     width: 100%;
-    font-size: 2rem; /* Aumenta el tamaño de la fuente aquí */
+    font-size: 2rem;
+}
+
+.disclaimer {
+    text-align: center;
+    margin-top: 16px;
 }
 </style>
