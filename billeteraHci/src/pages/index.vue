@@ -1,10 +1,11 @@
 <template>
-  <Login/>
+  <Login2/>
 </template>
 
 <script setup>
-import Login from '@/components/login.vue';
 import MyRectangle from '@/components/MyRectangle.vue';
+import Register from '@/components/register.vue';
+import Login2 from '@/components/login2.vue';
 
   //
 </script>
