@@ -9,6 +9,10 @@ import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 import colors from 'vuetify/util/colors'
 
+//icons
+import '@fortawesome/fontawesome-free/css/all.css' // Ensure your project is capable of handling css files
+import { aliases, fa } from 'vuetify/iconsets/fa'
+
 
 // Composables
 import { createVuetify } from 'vuetify'
@@ -25,6 +29,14 @@ export default createVuetify({
           secondary: colors.pink.accent2,  // Usa pink con su tonalidad
         },
       },
+    },
+  },
+
+  icons: {
+    defaultSet: 'fa',
+    aliases,
+    sets: {
+      fa,
     },
   },
 })
