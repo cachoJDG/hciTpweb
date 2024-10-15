@@ -38,7 +38,6 @@ const buttonClass = computed(() => {
 .card {
   display: flex;
   width: 100%;
-  height: 10%;
   margin-top: 10px;
   margin-bottom: 10px;
   padding-left: 30px;
@@ -51,10 +50,20 @@ const buttonClass = computed(() => {
 }
 
 .selected {
-  background-color: #C89ECE;
+  background-color: #9606aa ;
 }
 
 .notSelected {
-  background-color: #ababab;
+  background-color: transparent;
 }
+
+.v-btn.v-btn--density-default {
+    height: 10%; 
+    box-shadow: none; 
+}
+
+.v-btn:hover {
+    background-color: #9606aa;
+}
+
 </style>
