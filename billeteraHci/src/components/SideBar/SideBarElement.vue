@@ -10,17 +10,28 @@ defineProps({
   elementIcon: {
     type: String,
     required: true
+  },
+  selectedBool: {
+    type: Boolean,
+    required: true
   }
 });
 
+const buttonClass = computed(() => {
+  return {
+    card: true,
+    selected: props.selectedBool,
+    notSelected: !selectedBool
+  };
+});
 </script>
 
 <template>
-  <v-card class="card" >
-    <v-icon :icon="elementIcon"></v-icon>
+  <v-btn class="card" :prepend-icon="elementIcon">
+<!--    <v-icon :icon="elementIcon"></v-icon>-->
 
     <p>{{ elementName }}</p>
-  </v-card>
+  </v-btn>
 </template>
 
 <style scoped>
@@ -28,8 +39,23 @@ defineProps({
     display: flex;
     width: 100%;
     height: 10%;
-    margin: 0;
-    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 30px;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    border-radius: 0;
+    background-color: #C89ECE;
+    box-shadow: none;
+
+    .selected{
+      background-color: #C89ECE;
+    }
+    .notSelected{
+      background-color: #ababab;
+    }
+
 
 
 
