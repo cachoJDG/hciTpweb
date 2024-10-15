@@ -1,8 +1,7 @@
 <script setup>
+import { ref, computed } from 'vue';
 
-import {VIcon} from "vuetify/components";
-
-defineProps({
+const props = defineProps({
   elementName: {
     type: String,
     required: true
@@ -17,47 +16,45 @@ defineProps({
   }
 });
 
+const isSelected = ref(props.selectedBool);
+
 const buttonClass = computed(() => {
   return {
     card: true,
-    selected: props.selectedBool,
-    notSelected: !selectedBool
+    selected: isSelected.value,
+    notSelected: !isSelected.value
   };
 });
+
 </script>
 
 <template>
-  <v-btn class="card" :prepend-icon="elementIcon">
-<!--    <v-icon :icon="elementIcon"></v-icon>-->
-
+  <v-btn :class="buttonClass" :prepend-icon="elementIcon">
     <p>{{ elementName }}</p>
   </v-btn>
 </template>
 
 <style scoped>
-  .card {
-    display: flex;
-    width: 100%;
-    height: 10%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-left: 30px;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: left;
-    border-radius: 0;
-    background-color: #C89ECE;
-    box-shadow: none;
+.card {
+  display: flex;
+  width: 100%;
+  height: 10%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 30px;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  border-radius: 0;
+  background-color: #C89ECE;
+  box-shadow: none;
+}
 
-    .selected{
-      background-color: #C89ECE;
-    }
-    .notSelected{
-      background-color: #ababab;
-    }
+.selected {
+  background-color: #C89ECE;
+}
 
-
-
-
-  }
+.notSelected {
+  background-color: #ababab;
+}
 </style>

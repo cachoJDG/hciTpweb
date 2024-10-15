@@ -1,6 +1,5 @@
 <script setup>
 import SideBarElement from "@/components/SideBar/SideBarElement.vue";
-import {VIcon} from "vuetify/components";
 
 defineProps({
   userName: {
@@ -17,10 +16,10 @@ defineProps({
 
 <template>
   <v-container class="container">
-    <SideBarElement element-icon="mdi-account-arrow-down" element-name="uno"/>
-    <SideBarElement element-icon="mdi-account-arrow-down" element-name="dos"/>
-    <SideBarElement element-icon="mdi-account-arrow-down" element-name="tres"/>
-    <SideBarElement element-icon="mdi-account-arrow-down" element-name="cuatro"/>
+    <SideBarElement element-icon="mdi-account-arrow-down" element-name="uno" :selected-bool="true"/>
+    <SideBarElement element-icon="mdi-account-arrow-down" element-name="dos" :selected-bool="false"/>
+    <SideBarElement element-icon="mdi-account-arrow-down" element-name="tres" :selected-bool="false"/>
+    <SideBarElement element-icon="mdi-account-arrow-down" element-name="cuatro" :selected-bool="false"/>
 <!--    <v-icon icon="mdi-account-arrow-down"/>-->
   </v-container>
 </template>
