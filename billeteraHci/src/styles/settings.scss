@@ -4,6 +4,11 @@
  * Configures SASS variables and Vuetify overwrites
  */
 
+ .v-application {
+    background: linear-gradient(to bottom, #B356CD, #AEA3AD);
+  }
+  
+
 // https://vuetifyjs.com/features/sass-variables/`
 // @use 'vuetify/settings' with (
 //   $color-pack: false
