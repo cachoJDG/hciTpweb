@@ -1,9 +1,11 @@
 <script setup>
 
   defineProps({
+    index: Number,
     title: String,
     number: String,
   });
+  defineEmits(['deleteCard']);
 
 </script>
 
@@ -11,7 +13,7 @@
   <v-card class="card text-black">
     <v-card-title >{{ title }}</v-card-title>
     <v-card-text class="text">{{number}}</v-card-text>
-    <v-btn class="btn"  density="compact" @click="$emit('deleteCard')">
+    <v-btn class="btn"  density="compact" @click="$emit('deleteCard',index)">
       <v-icon color="black" size="50px">mdi-delete</v-icon>
     </v-btn>
   </v-card>
