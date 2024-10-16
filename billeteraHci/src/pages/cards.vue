@@ -3,6 +3,7 @@
 import BarraLateral from "@/components/BarraLateral.vue";
 import MyRectangle from "@/components/MyRectangle.vue";
 import AddCardForm from "@/components/Tarjetas/AddCardForm.vue";
+import AddedCards from "@/components/Tarjetas/AddedCards.vue";
 </script>
 
 <template>
@@ -10,8 +11,7 @@ import AddCardForm from "@/components/Tarjetas/AddCardForm.vue";
     <BarraLateral active-section="a" user-name="a"/>
     <div class="cards">
       <MyRectangle title="Tarjetas">
-        <p>disclaimerrrr</p>
-        <h1>conmtent</h1>
+        <AddedCards :num="3"/>
       </MyRectangle>
       <MyRectangle title="Agregar Tarjeta">
         <add-card-form/>
