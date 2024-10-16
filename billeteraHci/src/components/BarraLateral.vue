@@ -13,7 +13,7 @@
 
         <v-divider></v-divider>
 
-        <v-list-item v-for="(item, index) in menuItems" :key="index" @click="navigateTo(item.route)" @mouseover="hoverItem = index" @mouseout="hoverItem = null">
+        <v-list-item v-for="(item, index) in menuItems" :key="index" @click="navigateTo(item.route)" @mouseover="hoverItem = index" @mouseout="hoverItem = null" >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -39,11 +39,9 @@
     </v-navigation-drawer>
   </template>
 
-  <script>
-  import { ref } from 'vue';
+  <script setup>
+      import { ref } from 'vue';
 
-  export default {
-    setup() {
       const userName = ref('Tu Nombre');
       const menuItems = ref([
         { title: 'Inicio', icon: 'mdi-home', route: '/inicio' },
@@ -63,9 +61,8 @@
         console.log('Cerrar Sesión');
       };
 
-      return { userName, menuItems, navigateTo, hoverItem, cerrarSesion };
-    }
-  }
+
+
   </script>
 
   <style scoped>

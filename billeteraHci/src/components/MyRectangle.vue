@@ -1,6 +1,8 @@
+
+
 <template>
   <v-container>
-    <v-card class="white--text pa-4" color="white" outlined>
+    <v-card class="white--text pa-2" :width="width" color="#D9D9D9" outlined>
       <v-card-title class="black--text">{{ title }}</v-card-title>
       <v-card-text>
         <slot></slot>
@@ -9,15 +11,14 @@
   </v-container>
 </template>
 
-<script>
-export default {
-  props: {
-    title: {
+<script setup>
+  defineProps({
+    title: String,
+    width: {
       type: String,
-      required: true
+      default: '550px'
     }
-  }
-}
+  });
 </script>
 
 <style scoped>

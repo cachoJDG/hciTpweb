@@ -32,7 +32,6 @@ defineProps({
   width: 20vw;
   padding: 10px 0;
 
-
   background-color: #C89ECE;
   float: left;
 }
