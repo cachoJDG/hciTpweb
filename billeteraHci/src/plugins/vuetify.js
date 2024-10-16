@@ -11,11 +11,10 @@ import colors from 'vuetify/util/colors'
 
 //icons
 import '@fortawesome/fontawesome-free/css/all.css' // Ensure your project is capable of handling css files
-import { aliases, fa } from 'vuetify/iconsets/fa'
-
 
 // Composables
 import { createVuetify } from 'vuetify'
+import { aliases, mdi} from "vuetify/iconsets/mdi";
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
@@ -33,10 +32,10 @@ export default createVuetify({
   },
 
   icons: {
-    defaultSet: 'fa',
+    defaultSet: 'mdi',
     aliases,
     sets: {
-      fa,
+      mdi,
     },
   },
 })
