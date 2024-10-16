@@ -40,6 +40,9 @@
                 <div class="disclaimer">
                     <span><slot name="disclaimer"></slot></span>
                 </div>
+                <div class="disclaimer">
+                    <span><slot name="recover-password"></slot></span>
+                </div>
             </v-card>
         </v-container>
     </div>
