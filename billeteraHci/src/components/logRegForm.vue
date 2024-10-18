@@ -7,6 +7,7 @@
                     <slot name="form-fields"></slot> <!-- Aquí van los campos adicionales -->
                     <!-- Campo de Email -->
                     <v-text-field
+                        v-model="email"
                         label="Correo Electrónico"
                         :rules="[v => !!v || 'Correo es requerido', v => /.+@.+/.test(v) || 'Debe contener @']"
                         outlined
@@ -16,6 +17,7 @@
                     ></v-text-field>
                     <!-- Campo de Contraseña -->
                     <v-text-field
+                        v-model="password"
                         :type="showPassword ? 'text' : 'password'"
                         label="Contraseña"
                         :rules="[v => !!v || 'Contraseña es requerida', v => v.length >= 9 || 'Debe tener al menos 9 caracteres']"
@@ -50,6 +52,14 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useLoginStore } from '@/stores/login';
+import { useRouter } from 'vue-router';
+
+const email = ref('')
+const password = ref('')
+const showPassword = ref(false);
+const loading = ref(false);
+
 
 const props = defineProps({
   title: {
@@ -62,18 +72,31 @@ const props = defineProps({
   }
 }); 
 
-const showPassword = ref(false);
-const loading = ref(false);
+
+const loginStore = useLoginStore(); // Obtén la instancia del store
+const router = useRouter(); // todo Definir el tipo de router
 
 const togglePasswordVisibility = () => {
     showPassword.value = !showPassword.value;
 };
 
+const login = () => {
+    if (useLoginStore.login(email, password)) {
+        router.push('/myProfile');
+    } else {
+        alert('Credenciales incorrectas');
+    }
+};
+
 const handleSubmit = () => {
-    loading.value = true;
-    setTimeout(() => {
-        loading.value = false;
-    }, 2000);
+    console.log('Email:', email.value)
+    console.log('Password:', password.value)
+    console.log(loginStore.login(email.value, password.value))
+    if (loginStore.login(email.value, password.value)) {
+        router.push('/myProfile');
+    } else {
+        console.log('Credenciales incorrectas');
+    }
 };
 </script>
 

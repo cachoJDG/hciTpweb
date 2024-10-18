@@ -31,12 +31,15 @@
 import LogRegForm from '@/components/logRegForm.vue';
 import { useRouter } from 'vue-router';
 
+
 const router = useRouter();
 const dialog = ref(false);
 
 const redirectToRegister = () => {
     router.push('/register');
 };
+
+
 
 </script>
 

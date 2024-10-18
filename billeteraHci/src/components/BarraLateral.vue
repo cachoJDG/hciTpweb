@@ -24,7 +24,6 @@
 
         <v-divider></v-divider>
 
-        <!-- Cerrar Sesión al final -->
         <v-list-item @click="cerrarSesion" class="mt-auto">
           <v-list-item-icon>
             <v-icon>mdi-logout</v-icon>
@@ -57,7 +56,6 @@
       };
 
       const cerrarSesion = () => {
-        // Aquí deberías implementar la lógica para cerrar la sesión
         console.log('Cerrar Sesión');
       };
 
