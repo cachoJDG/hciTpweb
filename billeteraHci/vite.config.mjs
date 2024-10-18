@@ -40,9 +40,6 @@ export default defineConfig({
         'vue',
         'vue-router',
       ],
-      eslintrc: {
-        enabled: true,
-      },
       vueTemplate: true,
     }),
   ],

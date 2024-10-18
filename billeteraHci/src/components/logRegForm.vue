@@ -1,6 +1,6 @@
 <template>
     <div class="background">
-        <v-container max-width="700">
+        <v-container class="scale" max-width="700">
             <v-card class="pa-4" color="white">
                 <v-card-title class="title">{{ title }}</v-card-title>
                 <v-form @submit.prevent="handleSubmit">
@@ -83,6 +83,10 @@ const handleSubmit = () => {
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.scale{
+    transform: scale(1.6);
 }
 
 .v-card {
