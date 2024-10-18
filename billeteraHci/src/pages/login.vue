@@ -35,7 +35,7 @@ const router = useRouter();
 const dialog = ref(false);
 
 const redirectToRegister = () => {
-    router.push('/register');
+    router.push('/Inicio');
 };
 
 </script>

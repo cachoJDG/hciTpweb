@@ -1,7 +1,7 @@
 <template>
-    <v-navigation-drawer app>
+    <v-navigation-drawer app class>
 
-      <v-list style="display: flex; flex-direction: column; height: 100%;">
+      <v-list class="pa-0" style="display: flex; flex-direction: column; height: 100%;">
         <v-list-item class="no-hover">
           <v-list-item-avatar>
             <!-- <v-img src="path/to/your/profile-pic.jpg" /> -->
@@ -40,7 +40,8 @@
   </template>
 
   <script setup>
-      import { ref } from 'vue';
+      import router from '@/router';
+import { ref } from 'vue';
 
       const userName = ref('Tu Nombre');
       const menuItems = ref([
@@ -58,7 +59,7 @@
 
       const cerrarSesion = () => {
         // Aquí deberías implementar la lógica para cerrar la sesión
-        console.log('Cerrar Sesión');
+        router.push('/login');
       };
 
 
@@ -74,5 +75,8 @@
   }
   .no-hover {
     pointer-events: none;
+    min-height: 72px !important;
+    background-color: #e492e0; 
+
   }
   </style>
