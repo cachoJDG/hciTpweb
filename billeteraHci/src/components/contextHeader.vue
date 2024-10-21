@@ -1,6 +1,6 @@
 <template>
-  <div class="header-container">
-    <h1 class="header-title">{{ title }}</h1>
+  <div class="profile-container">
+    <h1 class="profile-title">{{ title }}</h1>
   </div>
 </template>
 
@@ -24,6 +24,21 @@ const props = defineProps({
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+}
+.profile-container {
+  display: flex; /* Flexbox para que ambos textos queden alineados */
+  align-items: center; /* Alineación vertical centrada */
+  justify-content: space-between; /* Espacio entre elementos */
+  height: 80px; /* Asegura que la altura sea la misma */
+  background-color: #7e57c2; /* Color de fondo similar */
+  padding: 10px; /* Espaciado interno */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.profile-title {
+  font-size: 28px; /* Tamaño de fuente */
+  font-weight: bold; /* Texto en negrita */
+  color: #ffffff; /* Color del texto */
 }
 
 .header-title {

@@ -162,9 +162,10 @@ const cancelarEdicion = () => {
 <style scoped>
 /* Estilo para la tarjeta */
 .v-card {
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; /* Bordes suaves */
     position: relative; /* Para el posicionamiento absoluto del botón de edición */
+    margin-bottom: 25px;
 }
 
 .edit-btn {
@@ -180,5 +181,9 @@ const cancelarEdicion = () => {
 }
 .v-list{
     background-color:transparent
+}
+.btn:hover {
+  background-color: #5a5f9e; /* Color ligeramente más oscuro */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Efecto de elevación */
 }
 </style>

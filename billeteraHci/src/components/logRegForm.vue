@@ -4,7 +4,7 @@
             <v-card class="pa-4" color="white">
                 <v-card-title class="title">{{ title }}</v-card-title>
                 <v-form @submit.prevent="handleSubmit">
-                    <slot name="form-fields"></slot> <!-- Aquí van los campos adicionales -->
+                    <slot name="form-fields"></slot>
                     <!-- Campo de Email -->
                     <v-text-field
                         v-model="email"
@@ -73,29 +73,18 @@ const props = defineProps({
 }); 
 
 
-const loginStore = useLoginStore(); // Obtén la instancia del store
-const router = useRouter(); // todo Definir el tipo de router
+const loginStore = useLoginStore();
+const router = useRouter();
 
 const togglePasswordVisibility = () => {
     showPassword.value = !showPassword.value;
 };
 
-const login = () => {
-    if (useLoginStore.login(email, password)) {
-        router.push('/myProfile');
-    } else {
-        alert('Credenciales incorrectas');
-    }
-};
-
 const handleSubmit = () => {
-    console.log('Email:', email.value)
-    console.log('Password:', password.value)
-    console.log(loginStore.login(email.value, password.value))
     if (loginStore.login(email.value, password.value)) {
-        router.push('/myProfile');
+        router.push({name: 'myProfile'});
     } else {
-        console.log('Credenciales incorrectas');
+        alert('Usuario o contraseña incorrectos');
     }
 };
 </script>

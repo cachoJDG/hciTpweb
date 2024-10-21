@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import Cobro from './Movimientos/Cobro.vue';
-import Transferencia from './Movimientos/Transferencia.vue';
+import Cobro from '../views/Movimientos/Cobro.vue';
+import Transferencia from '../views/Movimientos/Transferencia.vue';
+import BarraLateral from '../components/BarraLateral.vue';
 </script>
 
 <template>
-    <v-app class="bg-purple-lighten-2">
+    <BarraLateral/>
+    <v-app>
         <div>
             <v-row justify="space-evenly" align="center" class="ma-4">
                 <v-col cols="3">

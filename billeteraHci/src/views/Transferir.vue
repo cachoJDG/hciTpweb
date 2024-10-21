@@ -1,5 +1,6 @@
 <template>
-    <v-app class="bg-purple-lighten-2">
+    <BarraLateral/>
+    <v-app>
         <v-container class="ma-10">
             <v-row justify="center" align="center" no-gutters>
                 <v-card class="rounded-xl" color="white" width="1080px">
@@ -49,6 +50,8 @@
 </template>
 
 <script setup>
+import BarraLateral from '@/components/BarraLateral.vue';
+
 // const cardWidth = computeWidth(); 
 
 // computeWidth(){

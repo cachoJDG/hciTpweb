@@ -23,7 +23,7 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const redirectToLogin = () => {
-    router.push('/login');
+    router.push({name: 'Login'});
 };
 </script>
 
