@@ -41,6 +41,7 @@
 import router from '@/router/index2';
 import { RouterLink } from 'vue-router';
 import { ref } from 'vue';
+import { useLoginStore } from '@/stores/login';
 
 const userName = ref('Tu Nombre');
 const menuItems = ref([
@@ -56,7 +57,10 @@ const navigateTo = (route) => {
 };
 
 const cerrarSesion = () => {
-  console.log('Cerrar Sesión');
+  if(confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+    useLoginStore().logout();
+    router.push({ name: 'Login' });
+  }
 };
 </script>
 
