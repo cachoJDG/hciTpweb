@@ -33,6 +33,9 @@ const props = defineProps({
   background-color: #7e57c2; /* Color de fondo similar */
   padding: 10px; /* Espaciado interno */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+
+  width: 100%;
+  
 }
 
 .profile-title {

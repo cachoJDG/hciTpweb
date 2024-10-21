@@ -1,10 +1,13 @@
 <script setup>
 import BarraLateral from '@/components/BarraLateral.vue';
+import ContextHeader from "@/components/contextHeader.vue";
 
 </script>
 
 <template>
-    <v-app>
+
+
+      <context-header title="Tu CVU" />
         <BarraLateral userName="Juan Gago" />
         <v-row justify="center" class="ma-15">
             <v-card class="rounded-xl" color="white" style="width:450px;">
@@ -19,12 +22,12 @@ import BarraLateral from '@/components/BarraLateral.vue';
                         </v-col>
                         <v-col cols="2">
                             <v-btn color="deep-purple-lighten-2" rounded="xl">
-                                <v-icon icon="fa:fas fa-edit" color="black"></v-icon>
+                                <v-icon icon="mdi-account-edit-outline" color="black"></v-icon>
                             </v-btn>
                         </v-col>
                         <v-col>
                             <v-btn color="deep-purple-lighten-2" rounded="xl">
-                                <v-icon icon="fa:fas fa-copy" color="black"></v-icon>
+                                <v-icon icon="mdi-content-copy" color="black"></v-icon>
                             </v-btn>
                         </v-col>
                     </v-row>
@@ -37,12 +40,12 @@ import BarraLateral from '@/components/BarraLateral.vue';
                         </v-col>
                         <v-col>
                             <v-btn color="deep-purple-lighten-2" rounded="xl">
-                                <v-icon icon="fa:fas fa-copy" color="black"></v-icon>
+                                <v-icon icon="mdi-content-copy" color="black"></v-icon>
                             </v-btn>
                         </v-col>
                     </v-row>
                 </v-card>
             </v-card>
         </v-row>
-    </v-app>
+
 </template>

@@ -2,9 +2,11 @@
 import Cobro from '../views/Movimientos/Cobro.vue';
 import Transferencia from '../views/Movimientos/Transferencia.vue';
 import BarraLateral from '../components/BarraLateral.vue';
+import ContextHeader from "@/components/contextHeader.vue";
 </script>
 
 <template>
+    <ContextHeader title="Inicio"/>
     <BarraLateral/>
     <v-app>
         <div>

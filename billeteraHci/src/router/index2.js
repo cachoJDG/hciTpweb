@@ -6,6 +6,7 @@ import cobros from '../views/Movimientos/Cobro.vue'
 import transferencia from '../views/Movimientos/Transferencia.vue'
 import inicio from '../views/Inicio.vue'
 import transferir from '../views/Transferir.vue'
+import cards from '../views/cards.vue'
 
 const routes = [
     {
@@ -42,6 +43,7 @@ const routes = [
     {
         path: '/transferir',
         name: 'Transferir',
+
         component: () => import('../views/Transferir.vue')
     },
     {
@@ -53,6 +55,7 @@ const routes = [
         name: 'CVU',
         component: () => import('../views/TuCvu.vue')
     },
+
 ];
 
 const router = createRouter({

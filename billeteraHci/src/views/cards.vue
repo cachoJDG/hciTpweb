@@ -5,12 +5,18 @@ import ContextHeader from "@/components/contextHeader.vue";
 import MyRectangle from "@/components/MyRectangle.vue";
 import AddCardForm from "@/components/Tarjetas/AddCardForm.vue";
 import AddedCards from "@/components/Tarjetas/AddedCards.vue";
+import {useUserInfoStore} from "@/stores/userInfo";
+
+const userName = useUserInfoStore().userName;
+
 </script>
 
 <template>
+
   <ContextHeader title="Mis Tarjetas"/>
+
   <div class="page">
-    <BarraLateral active-section="a" user-name="a"/>
+    <BarraLateral active-section="a" :user-name="userName"/>
     <div class="cards">
       <MyRectangle title="Tarjetas">
         <AddedCards :num="3"/>

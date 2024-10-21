@@ -7,7 +7,13 @@
             <!-- <v-img src="path/to/your/profile-pic.jpg" /> -->
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title class="profile-title">Hola, {{ userName }}</v-list-item-title>
+            <v-list-item-title class="profile-title" >Hola, {{ userName }} </v-list-item-title>
+            <span>
+              <p>Mi Perfil
+              <v-icon>mdi-chevron-right</v-icon>
+              </p>
+            </span>
+
           </v-list-item-content>
         </v-list-item>
       </RouterLink>
@@ -42,19 +48,18 @@ import router from '@/router/index2';
 import { RouterLink } from 'vue-router';
 import { ref, defineProps } from 'vue';
 import { useLoginStore } from '@/stores/login';
+import { useUserInfoStore } from '@/stores/userInfo';
 
-const props = defineProps({
-  userName: {
-    type: String,
-    required: true
-  }
-});
+
+const userName = useUserInfoStore().userName;
 
 const menuItems = ref([
   { title: 'Inicio', icon: 'mdi-home', route: 'Inicio' },
   { title: 'Tu CVU', icon: 'mdi-application', route: 'CVU' },
   { title: 'Transferir', icon: 'mdi-transfer', route: 'Transferir' },
+
   { title:'Tarjetas', icon: 'mdi-credit-card-outline', route: 'Tarjetas' },
+
 
 ]);
 
@@ -75,9 +80,10 @@ const cerrarSesion = () => {
 <style scoped>
 .v-navigation-drawer {
   background-color: #b39ddb; /* Color más suave */
+  border-color: #7e57c2;
 }
 .v-list-item:hover {
-  background-color: #5a5f9e; /* Color ligeramente más oscuro */
+  background-color: #a493c7; /* Color ligeramente más oscuro */
 }
 
 .profile-link {
@@ -110,6 +116,7 @@ const cerrarSesion = () => {
 }
 
 
+
 .menu-item {
   padding: 20px; /* Aumenta el padding para hacer los botones más grandes */
   padding-left: 0px;
@@ -122,3 +129,4 @@ const cerrarSesion = () => {
 }
 
 </style>
+

@@ -1,5 +1,5 @@
 <template>
-    <BarraLateral userName="Diego" />
+    <BarraLateral/>
     <ContextHeader title="Mi Perfil" />
     <v-container class="mt-4 pl-4">
         <v-card color="white">
@@ -160,7 +160,7 @@ const cancelarEdicion = () => {
 <style scoped>
 /* Estilo para la tarjeta */
 .v-card {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px; /* Bordes suaves */
     position: relative; /* Para el posicionamiento absoluto del botón de edición */
     margin-bottom: 25px;

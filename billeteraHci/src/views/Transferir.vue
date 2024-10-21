@@ -1,7 +1,8 @@
 <template>
+    <ContextHeader title="Transferir" />
     <BarraLateral/>
     <v-app>
-        <v-container class="ma-10">
+        <v-container class="ml-10 mt-1">
             <v-row justify="center" align="center" no-gutters>
                 <v-card class="rounded-xl" color="white" width="1080px">
                     <v-card-title class="text-h5">Transferir por alias</v-card-title>
@@ -15,7 +16,7 @@
                             </v-col>
                             <v-col cols="2">
                                 <v-btn color="deep-purple-lighten-2" rounded="xl" size="large">
-                                    <v-icon icon="fa:fas fa-arrow-right" color="black" size="large"></v-icon>
+                                    <v-icon icon="fa:fas mdi-arrow-right" color="black" size="large"></v-icon>
                                 </v-btn>
                             </v-col>
                         </v-row>
@@ -23,7 +24,7 @@
                 </v-card>
             </v-row>
         </v-container>
-        <v-container class="ma-10">
+        <v-container class="ml-10 mt-0">
             <v-row justify="center" align="center" no-gutters>
                 <v-card class="rounded-xl" color="white" width="1080px">
                     <v-card-title class="text-h5">Transferir por enlace de pago</v-card-title>
@@ -38,7 +39,7 @@
                             </v-col>
                             <v-col cols="2">
                                 <v-btn color="deep-purple-lighten-2" rounded="xl" size="large">
-                                    <v-icon icon="fa:fas fa-arrow-right" color="black" size="large"></v-icon>
+                                    <v-icon icon="mdi-arrow-right" color="black" size="large"></v-icon>
                                 </v-btn>
                             </v-col>
                         </v-row>
@@ -51,8 +52,9 @@
 
 <script setup>
 import BarraLateral from '@/components/BarraLateral.vue';
+import ContextHeader from "@/components/contextHeader.vue";
 
-// const cardWidth = computeWidth(); 
+// const cardWidth = computeWidth();
 
 // computeWidth(){
 //     switch (this.$vuetify.breakpoint.name) {
