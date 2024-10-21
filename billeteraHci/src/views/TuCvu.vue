@@ -1,8 +1,11 @@
 <script setup>
+import BarraLateral from '@/components/BarraLateral.vue';
+
 </script>
 
 <template>
-    <v-app class="bg-purple-lighten-2">
+    <v-app>
+        <BarraLateral userName="Juan Gago" />
         <v-row justify="center" class="ma-15">
             <v-card class="rounded-xl" color="white" style="width:450px;">
                 <v-card-title class="text-h5">Datos de Pago</v-card-title>

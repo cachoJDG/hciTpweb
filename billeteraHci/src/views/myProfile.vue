@@ -1,7 +1,7 @@
 <template>
-    <BarraLateral />
+    <BarraLateral userName="Diego" />
     <ContextHeader title="Mi Perfil" />
-    <v-container class="mt-4">
+    <v-container class="mt-4 pl-4">
         <v-card color="white">
             <v-btn
                 v-if="!editando"
@@ -64,8 +64,6 @@
                     </v-row>
                 </v-form>
             </v-card-text>
-
-            <!-- Botones de acción (Guardar / Cancelar) -->
             <v-card-actions v-if="editando">
                 <v-btn @click="guardarPerfil" color="primary">Guardar</v-btn>
                 <v-btn @click="cancelarEdicion" color="secondary">Cancelar</v-btn>

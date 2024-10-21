@@ -14,12 +14,12 @@
 
       <v-divider></v-divider>
 
-      <v-list-item v-for="(item, index) in menuItems" :key="index" @click="navigateTo(item.route)" @mouseover="hoverItem = index" @mouseout="hoverItem = null">
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
+      <v-list-item v-for="(item, index) in menuItems" :key="index" @click="navigateTo(item.route)" @mouseover="hoverItem = index" @mouseout="hoverItem = null" class="menu-item">
         <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title class="menu-item">
+        <v-icon left class="menu-icon">{{ item.icon }}</v-icon>
+        {{ item.title }}
+          </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -40,14 +40,22 @@
 <script setup>
 import router from '@/router/index2';
 import { RouterLink } from 'vue-router';
-import { ref } from 'vue';
+import { ref, defineProps } from 'vue';
 import { useLoginStore } from '@/stores/login';
 
-const userName = ref('Tu Nombre');
+const props = defineProps({
+  userName: {
+    type: String,
+    required: true
+  }
+});
+
 const menuItems = ref([
   { title: 'Inicio', icon: 'mdi-home', route: 'Inicio' },
-  { title: 'Tu CVU', icon: 'mdi-credit-card', route: 'myProfile' },
+  { title: 'Tu CVU', icon: 'mdi-application', route: 'CVU' },
   { title: 'Transferir', icon: 'mdi-transfer', route: 'Transferir' },
+  { title:'Tarjetas', icon: 'mdi-credit-card-outline', route: 'Tarjetas' },
+
 ]);
 
 const hoverItem = ref(null);
@@ -66,7 +74,7 @@ const cerrarSesion = () => {
 
 <style scoped>
 .v-navigation-drawer {
-  background-color: #7e57c2; /* Color rosa */
+  background-color: #b39ddb; /* Color más suave */
 }
 .v-list-item:hover {
   background-color: #5a5f9e; /* Color ligeramente más oscuro */
@@ -100,4 +108,17 @@ const cerrarSesion = () => {
   background-color: #7e57c2; /* Color de fondo similar */
   padding: 10px; /* Espaciado interno */
 }
+
+
+.menu-item {
+  padding: 20px; /* Aumenta el padding para hacer los botones más grandes */
+  padding-left: 0px;
+  font-size: 18px; /* Tamaño de fuente */
+
+}
+
+.menu-icon {
+  margin-right: 10px; /* Ajusta el margen derecho según sea necesario */
+}
+
 </style>

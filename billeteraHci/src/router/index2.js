@@ -14,37 +14,45 @@ const routes = [
         component: login
     },
     {
-        path: '/myProfile',
+        path: '/miPerfil',
         name: 'myProfile',
-        component: myProfile
+        component: () => import('../views/myProfile.vue')
     },
     {
         path: '/register',
         name: 'Register',
-        component: register
+        component: () => import('../views/register.vue')
     },
     {
         path:'/movimientos/cobro',
         name: 'Cobros',
-        component: cobros
+        component: () => import('../views/Movimientos/Cobro.vue')
     },
     {
         path: '/movimientos/transferencia',
         name: 'Transferencia',
-        component: transferencia
+        component: () => import('../views/Movimientos/Transferencia.vue')
     },
     {
         path: '/inicio',
         name: 'Inicio',
-        component: inicio
+        component: () => import('../views/Inicio.vue')
 
     },
     {
         path: '/transferir',
         name: 'Transferir',
-        component: transferir
-    }
-
+        component: () => import('../views/Transferir.vue')
+    },
+    {
+        path: '/tarjetas',
+        name: 'Tarjetas',
+        component: () => import('../views/cards.vue')
+    },
+    {   path: '/tuCVU',
+        name: 'CVU',
+        component: () => import('../views/TuCvu.vue')
+    },
 ];
 
 const router = createRouter({
