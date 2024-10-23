@@ -20,14 +20,22 @@
 
       <v-divider></v-divider>
 
-      <v-list-item v-for="(item, index) in menuItems" :key="index" @click="navigateTo(item.route)" @mouseover="hoverItem = index" @mouseout="hoverItem = null" class="menu-item">
-        <v-list-item-content>
-          <v-list-item-title class="menu-item">
-        <v-icon left class="menu-icon">{{ item.icon }}</v-icon>
-        {{ item.title }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+      <v-list-item
+  v-for="(item, index) in menuItems"
+  :key="index"
+  :class="{'menu-item--active': $route.name === item.route}" 
+  @click="navigateTo(item.route)"
+  @mouseover="hoverItem = index"
+  @mouseout="hoverItem = null"
+  class="menu-item"
+>
+  <v-list-item-content>
+    <v-list-item-title >
+      <v-icon left class="menu-icon">{{ item.icon }}</v-icon>
+      {{ item.title }}
+    </v-list-item-title>
+  </v-list-item-content>
+</v-list-item>
 
       <v-divider></v-divider>
 
@@ -44,7 +52,7 @@
 </template>
 
 <script setup>
-import router from '@/router';
+import router from '@/router/index';
 import { RouterLink } from 'vue-router';
 import { ref, defineProps } from 'vue';
 import { useLoginStore } from '@/stores/login';
@@ -113,18 +121,36 @@ const cerrarSesion = () => {
   padding: 10px; /* Espaciado interno */
 }
 
-
-
 .menu-item {
   padding: 20px; /* Aumenta el padding para hacer los botones más grandes */
   padding-left: 0px;
   font-size: 18px; /* Tamaño de fuente */
-
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Transición suave */
+  border-left: 4px solid transparent; /* Indicador de selección */
 }
+
+.menu-item:hover {
+  background-color: #a493c7; /* Color de fondo más oscuro en hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  border-left: 4px solid #7e57c2; /* Indicador en el borde izquierdo */
+  transform: translateX(5px); /* Leve desplazamiento a la derecha */
+}
+
+.menu-item--active {
+  background-color: #7e57c2; /* Color de fondo cuando está seleccionado */
+  border-left: 4px solid #4a148c; /* Indicador en el borde izquierdo más fuerte */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Sombra más fuerte */
+  transform: translateX(5px); /* Mantén el desplazamiento */
+}
+
 
 .menu-icon {
   margin-right: 10px; /* Ajusta el margen derecho según sea necesario */
+  transition: color 0.3s ease; /* Transición suave para el color */
 }
 
+.v-list-item:last-child:hover {
+  background-color: #7e57c2;
+  color: #ffffff;
+}
 </style>
-

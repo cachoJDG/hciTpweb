@@ -15,8 +15,8 @@
                                 <v-text-field></v-text-field>
                             </v-col>
                             <v-col cols="2">
-                                <v-btn color="deep-purple-lighten-2" rounded="xl" size="large">
-                                    <v-icon icon="fa:fas mdi-arrow-right" color="black" size="large"></v-icon>
+                                <v-btn color="#9bc257" rounded="xl" size="large">
+                                    <v-icon icon="fa:fas mdi-arrow-right" size="large"></v-icon>
                                 </v-btn>
                             </v-col>
                         </v-row>
@@ -38,8 +38,8 @@
                                 <v-text-field></v-text-field>
                             </v-col>
                             <v-col cols="2">
-                                <v-btn color="deep-purple-lighten-2" rounded="xl" size="large">
-                                    <v-icon icon="mdi-arrow-right" color="black" size="large"></v-icon>
+                                <v-btn color="secondary" rounded="xl" size="large">
+                                    <v-icon icon="mdi-arrow-right" size="large"></v-icon>
                                 </v-btn>
                             </v-col>
                         </v-row>

@@ -25,7 +25,7 @@ export default createVuetify({
         dark: true,
         colors: {
           primary: '#7a1ea1',  // Usa purple con su tonalidad
-          secondary: colors.pink.accent2,  // Usa pink con su tonalidad
+          secondary: '#111c80',
           error:  '#96052e'
         },
       },

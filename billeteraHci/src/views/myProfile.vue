@@ -7,10 +7,9 @@
                 v-if="!editando"
                 @click="activarEdicion"
                 class="edit-btn"
-                color="primary"
-                icon
+                color="secondary"
+                icon="mdi-pencil"
             >
-                <v-icon>mdi-pencil</v-icon> <!-- Icono de lápiz -->
             </v-btn>
 
             <v-card-text>
@@ -65,8 +64,8 @@
                 </v-form>
             </v-card-text>
             <v-card-actions v-if="editando">
-                <v-btn @click="guardarPerfil" color="primary">Guardar</v-btn>
-                <v-btn @click="cancelarEdicion" color="secondary">Cancelar</v-btn>
+                <v-btn @click="guardarPerfil" color="secondary">Guardar</v-btn>
+                <v-btn @click="cancelarEdicion" color="error">Cancelar</v-btn>
             </v-card-actions>
         </MyRectangle>
 
@@ -75,7 +74,7 @@
             <v-card-text>
                 <v-row>
                     <v-col cols="12" sm="6">
-                        <v-switch label="Notificaciones" color="purple"></v-switch>
+                        <v-switch label="Notificaciones" color="secondary"></v-switch>
                     </v-col>
                     <v-col cols="12" sm="6">
                         <v-select :items="['Español', 'Inglés']" label="Idioma"></v-select>
@@ -100,7 +99,7 @@
                             <v-list-item-subtitle>Desactivado</v-list-item-subtitle>
                         </v-list-item-content>
                         <v-list-item-action class="pt-4">
-                            <v-btn color="primary" @click="activarAutenticacion">Activar</v-btn>
+                            <v-btn color="secondary" @click="activarAutenticacion">Activar</v-btn>
                         </v-list-item-action>
                     </v-list-item>
                 </v-list>
@@ -110,7 +109,7 @@
         <v-card class="mt-4" color="white">
             <v-card-title>Soporte y Ayuda</v-card-title>
             <v-card-text>
-                <v-btn color="primary" @click="irASoporte">Visitar el Centro de Ayuda</v-btn>
+                <v-btn color="secondary" @click="irASoporte">Visitar el Centro de Ayuda</v-btn>
             </v-card-text>
         </v-card>
     </v-container>
