@@ -1,18 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import login from '../views/login.vue';
-import register from '../views/register.vue';
-import myProfile from '../views/myProfile.vue';
-import cobros from '../views/Movimientos/Cobro.vue'
-import transferencia from '../views/Movimientos/Transferencia.vue'
-import inicio from '../views/Inicio.vue'
-import transferir from '../views/Transferir.vue'
-import cards from '../views/cards.vue'
+import inicio from '../views/Inicio.vue';
+
 
 const routes = [
     {
+        path: '/inicio',
+        name: 'Inicio',
+        component: inicio
+
+    },
+    {
         path: '/',
         name: 'Login',
-        component: login
+        component: () => import('../views/login.vue')
     },
     {
         path: '/miPerfil',
@@ -34,12 +34,7 @@ const routes = [
         name: 'Transferencia',
         component: () => import('../views/Movimientos/Transferencia.vue')
     },
-    {
-        path: '/inicio',
-        name: 'Inicio',
-        component: () => import('../views/Inicio.vue')
 
-    },
     {
         path: '/transferir',
         name: 'Transferir',
@@ -59,6 +54,12 @@ const routes = [
         name: 'Inversiones',
         component: () => import('../views/InversionesView.vue')
     },
+    {
+        // If no page found
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: () => import('../views/NotFound.vue')
+    }
 
 ];
 

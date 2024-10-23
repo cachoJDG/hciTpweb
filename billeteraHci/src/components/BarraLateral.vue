@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-import router from '@/router/index2';
+import router from '@/router';
 import { RouterLink } from 'vue-router';
 import { ref, defineProps } from 'vue';
 import { useLoginStore } from '@/stores/login';

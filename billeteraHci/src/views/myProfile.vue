@@ -2,7 +2,7 @@
     <BarraLateral/>
     <ContextHeader title="Mi Perfil" />
     <v-container class="mt-4 pl-4">
-        <v-card color="white">
+        <MyRectangle title="Datos Personales" width="100%">
             <v-btn
                 v-if="!editando"
                 @click="activarEdicion"
@@ -68,7 +68,7 @@
                 <v-btn @click="guardarPerfil" color="primary">Guardar</v-btn>
                 <v-btn @click="cancelarEdicion" color="secondary">Cancelar</v-btn>
             </v-card-actions>
-        </v-card>
+        </MyRectangle>
 
         <v-card class="mt-4" color="white">
             <v-card-title>Preferencias</v-card-title>
@@ -119,6 +119,7 @@
 <script setup>
 import BarraLateral from '@/components/BarraLateral.vue';
 import ContextHeader from '@/components/contextHeader.vue';
+import MyRectangle from '@/components/MyRectangle.vue';
 import { reactive, ref } from 'vue';
 
 // Datos iniciales del perfil
