@@ -57,10 +57,8 @@ const menuItems = ref([
   { title: 'Inicio', icon: 'mdi-home', route: 'Inicio' },
   { title: 'Tu CVU', icon: 'mdi-application', route: 'CVU' },
   { title: 'Transferir', icon: 'mdi-transfer', route: 'Transferir' },
-
   { title:'Tarjetas', icon: 'mdi-credit-card-outline', route: 'Tarjetas' },
-
-
+  { title: 'Inversiones', icon: 'mdi-finance', route: 'Inversiones'},
 ]);
 
 const hoverItem = ref(null);

@@ -55,6 +55,10 @@ const routes = [
         name: 'CVU',
         component: () => import('../views/TuCvu.vue')
     },
+    {   path: '/inversiones',
+        name: 'Inversiones',
+        component: () => import('../views/InversionesView.vue')
+    },
 
 ];
 
