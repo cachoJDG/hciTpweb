@@ -1,5 +1,5 @@
 <template>
-    <LogRegForm title="Iniciar Sesión" buttonText="Iniciar Sesión">
+    <LogRegForm @submit="handleLogin">
         <template #disclaimer>
             ¿No tienes cuenta? <a @click="redirectToRegister">Regístrate</a>
         </template>
@@ -30,13 +30,24 @@
 <script setup>
 import LogRegForm from '@/components/logRegForm.vue';
 import { useRouter } from 'vue-router';
+import { useLoginStore } from '@/stores/login';
 
 
 const router = useRouter();
 const dialog = ref(false);
+const loginStore = useLoginStore();
+
 
 const redirectToRegister = () => {
     router.push({ name: 'Register' });
+};
+
+const handleLogin = (formData) => {
+    if (loginStore.login(formData.email, formData.password)) {
+        router.push({ name: 'myProfile' });
+    } else {
+        alert('Usuario o contraseña incorrectos');
+    }
 };
 
 </script>

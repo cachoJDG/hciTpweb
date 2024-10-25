@@ -2,10 +2,19 @@
     <div class="background">
         <v-container class="scale" max-width="700">
             <v-card class="pa-4" color="white">
-                <v-card-title class="title">{{ title }}</v-card-title>
+                <v-card-title class="title">{{ isRegister? "Registrarse" : "Iniciar Sesión" }}</v-card-title>
                 <v-form @submit.prevent="handleSubmit">
-                    <slot name="form-fields"></slot>
-                    <!-- Campo de Email -->
+                    <v-text-field
+                        v-if="isRegister"
+                        v-model="name"
+                        type="text"
+                        label="Nombre"
+                        :rules="[v => !!v || 'Nombre es requerido']"
+                        outlined
+                        class="mb-4"
+                        color="purple"
+                        prepend-inner-icon="mdi-account"
+                    ></v-text-field>
                     <v-text-field
                         v-model="email"
                         label="Correo Electrónico"
@@ -15,7 +24,6 @@
                         class="mb-4"
                         prepend-inner-icon="mdi-email"
                     ></v-text-field>
-                    <!-- Campo de Contraseña -->
                     <v-text-field
                         v-model="password"
                         :type="showPassword ? 'text' : 'password'"
@@ -32,11 +40,8 @@
                         type="submit"
                         block
                         append-icon="mdi-arrow-right"
-                        :loading="loading"
-                        :disabled="loading"
-                        :class="{ 'loading-btn': loading }"
                     >
-                        <template v-if="!loading">{{ buttonText }}</template>
+                       {{ isRegister? "Registrarse" : "Iniciar Sesión" }}
                     </v-btn>
                 </v-form>
                 <div class="disclaimer">
@@ -52,40 +57,35 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useLoginStore } from '@/stores/login';
 import { useRouter } from 'vue-router';
 
-const email = ref('')
-const password = ref('')
+const email = ref('');
+const password = ref('');
+const name = ref('');
 const showPassword = ref(false);
-const loading = ref(false);
-
 
 const props = defineProps({
-  title: {
-    type: String,
-    required: true
-  },
-  buttonText: {
-    type: String,
-    required: true
+  isRegister: {
+    type: Boolean,
+    default: false
   }
 });
 
 
-const loginStore = useLoginStore();
 const router = useRouter();
+const emit = defineEmits(['submit']);
 
 const togglePasswordVisibility = () => {
     showPassword.value = !showPassword.value;
 };
 
 const handleSubmit = () => {
-    if (loginStore.login(email.value, password.value)) {
-        router.push({name: 'myProfile'});
-    } else {
-        alert('Usuario o contraseña incorrectos');
-    }
+    const formData = {
+        email: email.value,
+        password: password.value,
+        ...(props.isRegister ? { name: name.value } : {})
+    };
+    emit('submit', formData);
 };
 </script>
 
@@ -115,11 +115,6 @@ const handleSubmit = () => {
     font-size: 1rem;
     cursor: pointer;
     padding: 12px 16px;
-}
-
-.loading-btn {
-    background-color: purple !important;
-    color: white !important;
 }
 
 .title {
