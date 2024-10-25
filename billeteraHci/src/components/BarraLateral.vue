@@ -59,7 +59,7 @@ import { useLoginStore } from '@/stores/login';
 import { useUserInfoStore } from '@/stores/userInfo';
 
 
-const userName = useUserInfoStore().userName;
+const { userName } = useUserInfoStore();
 
 const menuItems = ref([
   { title: 'Inicio', icon: 'mdi-home', route: 'Inicio' },

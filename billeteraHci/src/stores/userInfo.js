@@ -4,7 +4,7 @@ import { useLoginStore } from './login.js'
 
 export const useUserInfoStore = defineStore('userInfo', () => {
   const { user } = useLoginStore()
-  const userName = computed(() => user.value ? user.value.name : '')
+  const userName = computed(() => 'nep')
   const userEmail = computed(() => user.value ? user.value.email : '')
 
   const userLastName = ref('')
