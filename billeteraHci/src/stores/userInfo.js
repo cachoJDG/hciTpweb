@@ -22,8 +22,11 @@ export const useUserInfoStore = defineStore('userInfo', () => {
   }
 
   const getAlias = computed(() => {
-
-    return user.email ? `${user.name}.balloon` : 'laa';
+    if (user.email) {
+      const sanitizedUserName = user.name.replace(/\s+/g, '_');
+      return `${sanitizedUserName}.balloon`;
+    }
+    return 'laa';
   })
 
   return { userName, userLastName, userPhone, userEmail, userLanguage, updateUserInfo, getAlias }

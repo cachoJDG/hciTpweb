@@ -69,8 +69,7 @@
             </v-card-actions>
         </MyRectangle>
 
-        <v-card class="mt-4" color="white">
-            <v-card-title>Preferencias</v-card-title>
+        <MyRectangle title="Preferencias" width="100%">
             <v-card-text>
                 <v-row>
                     <v-col cols="12" sm="6">
@@ -81,9 +80,9 @@
                     </v-col>
                 </v-row>
             </v-card-text>
-        </v-card>
+        </MyRectangle>
 
-        <v-card class="mt-4" color="white">
+        <MyRectangle title="Seguridad" width="100%">
             <v-card-title>Seguridad de la Cuenta</v-card-title>
             <v-card-text>
                 <v-list>
@@ -104,14 +103,12 @@
                     </v-list-item>
                 </v-list>
             </v-card-text>
-        </v-card>
-
-        <v-card class="mt-4" color="white">
-            <v-card-title>Soporte y Ayuda</v-card-title>
+        </MyRectangle>
+        <MyRectangle title="Soporte" width="100%">
             <v-card-text>
                 <v-btn color="secondary" @click="irASoporte">Visitar el Centro de Ayuda</v-btn>
             </v-card-text>
-        </v-card>
+        </MyRectangle>
     </v-container>
 </template>
 
@@ -164,11 +161,14 @@ const cancelarEdicion = () => {
 
 <style scoped>
 /* Estilo para la tarjeta */
+.v-card .v-card-text{
+    padding-bottom: 0px;
+}
+
 .v-card {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px; /* Bordes suaves */
     position: relative; /* Para el posicionamiento absoluto del botón de edición */
-    margin-bottom: 25px;
 }
 
 .edit-btn {

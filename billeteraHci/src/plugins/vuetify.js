@@ -7,7 +7,6 @@
 // Styles
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
-import colors from 'vuetify/util/colors'
 
 //icons
 import '@fortawesome/fontawesome-free/css/all.css' // Ensure your project is capable of handling css files
@@ -26,7 +25,8 @@ export default createVuetify({
         colors: {
           primary: '#7a1ea1', 
           secondary: '#111c80',
-          error:  '#96052e'
+          error:  '#96052e',
+          background: '#f2e6ff'
         },
       },
     },
