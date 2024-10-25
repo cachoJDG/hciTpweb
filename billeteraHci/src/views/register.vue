@@ -20,10 +20,9 @@ import { useLoginStore } from '@/stores/login.js';
 const loginStore = useLoginStore();
 
 const handleRegister = (formData) => {
-    if( loginStore.register(formData.name, formData.email, formData.password)){
-        router.push({ name: 'myProfile' });
-    };
-    alert('Usuario o contraseña incorrectos');
+    loginStore.register(formData.name, formData.email, formData.password)
+    router.push({ name: 'myProfile' });
+
 };
 </script>
 
