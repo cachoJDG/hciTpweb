@@ -11,7 +11,9 @@ export const useLoginStore = defineStore('checkLogin', () => {
     }
 
     const login = (email, password) => {
-        if (user.value && user.value.email === email && user.value.password === password) {
+        const storedUser = JSON.parse(localStorage.getItem('user'))
+        if (storedUser && storedUser.email === email && storedUser.password === password) {
+            user.value = storedUser
             return true
         }
         return false
@@ -19,7 +21,6 @@ export const useLoginStore = defineStore('checkLogin', () => {
 
     const logout = () => {
         user.value = null
-        localStorage.removeItem('user')
     }
 
     const initiatePasswordReset = (email, newPassword) => {
@@ -27,6 +28,7 @@ export const useLoginStore = defineStore('checkLogin', () => {
             user.value.password = newPassword
             localStorage.setItem('user', JSON.stringify(user.value))
         }
+
     }
 
     return { user, isAuthenticated, register, login, logout, initiatePasswordReset }
