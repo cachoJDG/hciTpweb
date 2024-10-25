@@ -28,8 +28,8 @@
                         :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
                         @click:append-inner="togglePasswordVisibility"
                     ></v-text-field>
-                    <v-btn 
-                        type="submit" 
+                    <v-btn
+                        type="submit"
                         block
                         append-icon="mdi-arrow-right"
                         :loading="loading"
@@ -70,7 +70,7 @@ const props = defineProps({
     type: String,
     required: true
   }
-}); 
+});
 
 
 const loginStore = useLoginStore();

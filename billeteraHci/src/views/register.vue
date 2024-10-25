@@ -1,5 +1,5 @@
 <template>
-    <LogRegForm title="Registrarse" buttonText="Registrarse">
+    <LogRegForm title="Registrarse" buttonText="Registrarse" >
         <template #form-fields>
             <v-text-field
                 type="text"
