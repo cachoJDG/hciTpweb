@@ -3,6 +3,10 @@ import Cobro from '../views/Movimientos/Cobro.vue';
 import Transferencia from '../views/Movimientos/Transferencia.vue';
 import BarraLateral from '../components/BarraLateral.vue';
 import ContextHeader from "@/components/contextHeader.vue";
+import { useWalletStore } from '@/stores/walletStore.js';
+
+const walletStore = useWalletStore();
+const balance = walletStore.getBalance();
 </script>
 
 <template>
@@ -14,7 +18,7 @@ import ContextHeader from "@/components/contextHeader.vue";
                 <v-col cols="3">
                     <v-card class="rounded-xl" color="white" style="width:300px;">
                         <v-card-title class="text-h4 font-weight-medium">Tu saldo</v-card-title>
-                        <v-card-text class="text-h4 font-weight-bold text-purple-lighten-3">$ 20.000</v-card-text>
+                        <v-card-text class="text-h4 font-weight-bold text-purple-lighten-3">$ {{ balance }}</v-card-text>
                     </v-card>
                 </v-col>
                 <v-col cols="3">

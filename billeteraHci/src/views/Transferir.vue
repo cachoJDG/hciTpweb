@@ -15,7 +15,7 @@
                                 <v-text-field></v-text-field>
                             </v-col>
                             <v-col cols="2">
-                                <v-btn color="#9bc257" rounded="xl" size="large">
+                                <v-btn color="#9bc257" rounded="xl" size="large" @click="showPopup = true">
                                     <v-icon icon="fa:fas mdi-arrow-right" size="large"></v-icon>
                                 </v-btn>
                             </v-col>
@@ -47,27 +47,40 @@
                 </v-card>
             </v-row>
         </v-container>
+        <v-dialog v-model="showPopup" max-width="500px">
+            <v-card>
+                <v-card-title class="headline">Ingresar Dinero</v-card-title>
+                <v-card-text>
+                    <v-form>
+                        <v-text-field v-model="amount" label="Monto" type="number"></v-text-field>
+                    </v-form>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="green darken-1" text @click="handleAddMoney">Pagar</v-btn>
+                    <v-btn color="red darken-1" text @click="showPopup = false">Cancelar</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-app>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import BarraLateral from '@/components/BarraLateral.vue';
 import ContextHeader from "@/components/contextHeader.vue";
+import { useWalletStore } from '@/stores/walletStore.js';
 
-// const cardWidth = computeWidth();
+const showPopup = ref(false);
+const amount = ref(0);
+const walletStore = useWalletStore();
 
-// computeWidth(){
-//     switch (this.$vuetify.breakpoint.name) {
-//         case "xs":
-//           return "250px";
-//         case "sm":
-//           return "350px";
-//         case "md":
-//           return "600px";
-//         case "lg":
-//           return "800px";
-//         case "xl":
-//           return "1080px";
-// }
-// }
+const handleAddMoney = () => {
+    const success = walletStore.removeMoney(amount.value);
+    if (!success) {
+        alert('Saldo insuficiente');
+    } else {
+        showPopup.value = false;
+    }
+};
 </script>

@@ -119,14 +119,19 @@
 import BarraLateral from '@/components/BarraLateral.vue';
 import ContextHeader from '@/components/contextHeader.vue';
 import MyRectangle from '@/components/MyRectangle.vue';
-import { reactive, ref } from 'vue';
+import { reactive, ref, computed } from 'vue';
+import { useUserInfoStore } from '@/stores/userInfo.js';
+
+const userInfoStore = useUserInfoStore();
+const userName = computed(() => userInfoStore.userName);
+const userEmail = computed(() => userInfoStore.userEmail);
 
 // Datos iniciales del perfil
 const formData = reactive({
-    nombre: 'Juan',
-    apellido: 'Pérez',
-    telefono: '123456789',
-    email: 'juan.perez@example.com',
+    nombre: userName.value,
+    apellido: '---',
+    telefono: '---',
+    email: userEmail.value,
 });
 
 // Estado del modo de edición

@@ -10,7 +10,7 @@ export const useLoginStore = defineStore('checkLogin', () => {
     }
 
     const login = (email, password) => {
-        if (user.value && user.value.email === email && user.value.password === password || email === "juan") {
+        if (user.value && user.value.email === email && user.value.password === password) {
             return true
         }
         return false

@@ -1,11 +1,11 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { useLoginStore } from './login.js'
+import { useLoginStore } from '../stores/login'
 
 export const useUserInfoStore = defineStore('userInfo', () => {
   const { user } = useLoginStore()
-  const userName = computed(() => 'nep')
-  const userEmail = computed(() => user.value ? user.value.email : '')
+  const userName = computed(() => user ? user.name : '')
+  const userEmail = computed(() => user ? user.email : '')
 
   const userLastName = ref('')
   const userPhone = ref('')
@@ -13,13 +13,18 @@ export const useUserInfoStore = defineStore('userInfo', () => {
 
   const updateUserInfo = (info) => {
     const { name, lastName, phone, email } = info;
-    if (user.value) {
-      if (name !== undefined) user.value.name = name;
-      if (email !== undefined) user.value.email = email;
+    if (user) {
+      if (name !== undefined) user.name = name;
+      if (email !== undefined) user.email = email;
     }
-    userLastName.value = lastName !== undefined ? lastName : userLastName.value;
-    userPhone.value = phone !== undefined ? phone : userPhone.value;
+    userLastName.value = lastName !== undefined ? lastName : '';
+    userPhone.value = phone !== undefined ? phone : '';
   }
 
-  return { userName, userLastName, userPhone, userEmail, userLanguage, updateUserInfo }
+  const getAlias = computed(() => {
+
+    return user.email ? `${user.name}.balloon` : 'laa';
+  })
+
+  return { userName, userLastName, userPhone, userEmail, userLanguage, updateUserInfo, getAlias }
 })
