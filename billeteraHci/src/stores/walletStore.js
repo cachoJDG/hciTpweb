@@ -21,7 +21,9 @@ export const useWalletStore = defineStore('wallet', () => {
         if (amount > 0 && balanceValue.value >= amount) {
             balanceValue.value -= amount
             transactions.value.push({ type: 'remove', amount, date: new Date() })
+            return true;
         }
+        return false;
     }
 
     const payWithCreditCard = (cardNumber, amount) => {

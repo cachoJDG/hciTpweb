@@ -35,10 +35,10 @@
                             <v-col cols="7">
                                 <v-card-item class="font-weight-medium text-subtitle-1">Ingresa el enlace de
                                     pago</v-card-item>
-                                <v-text-field></v-text-field>
+                                <v-text-field v-model="paymentLink"></v-text-field>
                             </v-col>
                             <v-col cols="2">
-                                <v-btn color="secondary" rounded="xl" size="large">
+                                <v-btn color="secondary" rounded="xl" size="large" @click="handlePaymentLink">
                                     <v-icon icon="mdi-arrow-right" size="large"></v-icon>
                                 </v-btn>
                             </v-col>
@@ -73,6 +73,7 @@ import { useWalletStore } from '@/stores/walletStore.js';
 
 const showPopup = ref(false);
 const amount = ref(0);
+const paymentLink = ref('');
 const walletStore = useWalletStore();
 
 const handleAddMoney = () => {
@@ -82,5 +83,19 @@ const handleAddMoney = () => {
     } else {
         showPopup.value = false;
     }
+};
+const handlePaymentLink = () => {
+    const urlParts = paymentLink.value.split('/');
+    const alias = urlParts[urlParts.length - 2];
+    const amount = parseInt(urlParts[urlParts.length - 1], 10);
+
+    const success = walletStore.removeMoney(amount);
+    if (!success) {
+        alert('Saldo insuficiente'); 
+    } else {
+        alert(`le mandaste a: ${alias}, esta cantidad: ${amount}`);
+    }
+
+    
 };
 </script>
