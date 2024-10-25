@@ -11,14 +11,23 @@ const alias = userInfoStore.getAlias;
 const walletStore = useWalletStore();
 
 const amount = ref(0);
-  
+const dialog = ref(false);
+const dialogMessage = ref('');
+
 const handleButtonClick = () => {
     walletStore.addMoney(200);
 };
 
 const logPaymentLink = () => {
     const paymentLink = `http://ballon/${alias}/${amount.value}`;
-    console.log(paymentLink);
+    navigator.clipboard.writeText(paymentLink).then(() => {
+        dialogMessage.value = 'Enlace de pago copiado al portapapeles';
+        dialog.value = true;
+    }).catch(err => {
+        dialogMessage.value = 'Error al copiar el enlace de pago';
+        dialog.value = true;
+        console.error('Failed to copy payment link: ', err);
+    });
 };
 
 function generateCVU() {
@@ -87,4 +96,14 @@ const cvu = generateCVU();
             </v-card>
         </v-card>
     </v-row>
+    <v-dialog v-model="dialog" max-width="400">
+        <v-card>
+            <v-card-title class="headline">Información</v-card-title>
+            <v-card-text>{{ dialogMessage }}</v-card-text>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" text @click="dialog = false">Cerrar</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
 </template>

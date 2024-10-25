@@ -7,6 +7,7 @@ import { useWalletStore } from '@/stores/walletStore.js';
 
 const walletStore = useWalletStore();
 const balance = walletStore.getBalance();
+const transactions = walletStore.getTransactions();
 </script>
 
 <template>
@@ -42,13 +43,10 @@ const balance = walletStore.getBalance();
                 <v-card class="rounded-xl pr-2 overflow-auto" color="white">
                     <v-card-title class="text-h5 font-weight-medium pb-0">Movimientos</v-card-title>
                     <v-list bg-color="white" class="pt-0" max-height="400px">
-                        <Transferencia monto="1000" persona="Juan Gago" fecha="hoy"/>
-                        <Cobro monto="10000" persona="Juan Gago" fecha="hoy"/>
-                        <Transferencia monto="1000" persona="Juan Gago" fecha="hoy"/>
-                        <Transferencia monto="1000" persona="Juan Gago" fecha="hoy"/>
-                        <Transferencia monto="1000" persona="Juan Gago" fecha="hoy"/>
-                        <Transferencia monto="1000" persona="Juan Gago" fecha="hoy"/>
-                        <Transferencia monto="1000" persona="Juan Gago" fecha="hoy"/>
+                        <template v-for="(transaction, index) in transactions" :key="index">
+                            <Transferencia v-if="transaction.type === 'remove'" :monto="transaction.amount" persona="Juan Gago" :fecha="transaction.date"/>
+                            <Cobro v-else-if="transaction.type === 'add'" :monto="transaction.amount" persona="Juan Gago" :fecha="transaction.date"/>
+                        </template>
                     </v-list>
                     <div class="text-end mt-2">
                         <v-btn class="text-black mb-4 mr-4" color="deep-purple-lighten-2" size="large">Ver mas</v-btn>
