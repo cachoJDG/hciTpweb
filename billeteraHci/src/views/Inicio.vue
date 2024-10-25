@@ -43,7 +43,7 @@ const transactions = walletStore.getTransactions();
                 <v-card class="rounded-xl pr-2 overflow-auto" color="white">
                     <v-card-title class="text-h5 font-weight-medium pb-0">Movimientos</v-card-title>
                     <v-list bg-color="white" class="pt-0" max-height="400px">
-                        <template v-for="(transaction, index) in transactions" :key="index">
+                        <template v-for="(transaction, index) in transactions.slice().reverse()" :key="index">
                             <Transferencia v-if="transaction.type === 'remove'" :monto="transaction.amount" persona="Juan Gago" :fecha="transaction.date"/>
                             <Cobro v-else-if="transaction.type === 'add'" :monto="transaction.amount" persona="Juan Gago" :fecha="transaction.date"/>
                         </template>

@@ -27,8 +27,8 @@
         <v-container class="ml-10 mt-0">
             <v-row justify="center" align="center" no-gutters>
                 <v-card class="rounded-xl" color="white" width="1080px">
-                    <v-card-title class="text-h5">Por enlace de pago</v-card-title>
-                    <v-card-text class="text-subtitle-1">A otras cuentas team chuan</v-card-text>
+                    <v-card-title class="text-h5">Por enlace</v-card-title>
+                    <v-card-text class="text-subtitle-1">A otras cuentas</v-card-text>
 
                     <v-card class="bg-deep-purple-lighten-4 rounded-xl text-black ma-8">
                         <v-row justify="space-around" align="center">
