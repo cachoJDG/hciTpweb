@@ -15,10 +15,13 @@ const router = useRouter();
 const redirectToLogin = () => {
     router.push({name: 'Login'});
 };
+import { useLoginStore } from '@/stores/login.js';
+
+const loginStore = useLoginStore();
+
 const handleRegister = (formData) => {
-    console.log('Nombre:', formData.name);
-    console.log('Correo:', formData.email);
-    console.log('Contraseña:', formData.password);
+    loginStore.register(formData.name, formData.email, formData.password);
+    console.log('Usuario registrado:', loginStore.user);
 };
 </script>
 
