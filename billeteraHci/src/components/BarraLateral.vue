@@ -36,18 +36,16 @@
     </v-list-item-title>
   </v-list-item-content>
 </v-list-item>
-
       <v-divider></v-divider>
-
       <v-list-item @click="cerrarSesion" class="mt-auto">
-        <v-list-item-icon>
-          <v-icon>mdi-logout</v-icon>
-        </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>Cerrar Sesión</v-list-item-title>
+          <v-list-item-title>
+        <v-icon left class="menu-icon">mdi-logout</v-icon>
+        Cerrar Sesión
+          </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-    </v-list>
+        </v-list>
   </v-navigation-drawer>
 </template>
 

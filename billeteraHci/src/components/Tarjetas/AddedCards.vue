@@ -38,6 +38,7 @@ cards.value = creditCardStore.getUserCreditCards();
 
 <template>
   <v-container class="container" >
+  
     <div v-if="cards.length > 0">
       <CreditCard v-for="(card,index) in cards"
                   :key="index"
@@ -78,10 +79,19 @@ cards.value = creditCardStore.getUserCreditCards();
 .container{
   width: 100%;
   justify-content: center;
+  position: relative;
 }
 .modal{
   max-width: 600px;
   justify-content: center;
+}
+
+.three-dots {
+  cursor: pointer;
+  color: #000;
+  position : absolute;
+  right: 8px;
+  top: 1px;
 }
 
 
