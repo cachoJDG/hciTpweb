@@ -12,15 +12,15 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 
-const onInput = () => {
+const onInput = (event) => {
   emit('update:modelValue', event.target.value);
 };
 
 </script>
 
 <template>
-  <v-card class="card">
-    <v-card-title class="text-black">{{ title }}</v-card-title>
+  <div class="form-field">
+    <label class="form-label">{{ title }}</label>
     <v-text-field
       :label="title"
       :rules="rules"
@@ -30,12 +30,18 @@ const onInput = () => {
       :model-value="modelValue"
       @input="onInput"
     />
-  </v-card>
+  </div>
 </template>
 
 <style scoped>
-.card {
-  border-radius: 20px;
-  background-color: #CCABF9;
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+  color: #510cc2;
+  margin-bottom: 5px;
+  display: block;
 }
 </style>

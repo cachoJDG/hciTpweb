@@ -47,13 +47,13 @@ const cvu = generateCVU();
                                                <v-card-item>{{ alias }}</v-card-item>
                     </v-col>
                     <v-col cols="2">
-                        <v-btn color="deep-purple-lighten-2" rounded="xl" @click="handleButtonClick">
-                            <v-icon icon="mdi-account-edit-outline" color="black"></v-icon>
+                        <v-btn color="secondary" rounded="xl" @click="handleButtonClick">
+                            <v-icon icon="mdi-account-edit-outline"></v-icon>
                         </v-btn>
                     </v-col>
                     <v-col>
-                        <v-btn color="deep-purple-lighten-2" rounded="xl" @click="handleButtonClick">
-                            <v-icon icon="mdi-content-copy" color="black"></v-icon>
+                        <v-btn color="secondary" rounded="xl" @click="handleButtonClick">
+                            <v-icon icon="mdi-content-copy"></v-icon>
                         </v-btn>
                     </v-col>
                 </v-row>
@@ -65,8 +65,8 @@ const cvu = generateCVU();
                                                <v-card-item>{{ cvu }}</v-card-item>
                     </v-col>
                     <v-col>
-                        <v-btn color="deep-purple-lighten-2" rounded="xl" @click="logPaymentLink">
-                            <v-icon icon="mdi-content-copy" color="black"></v-icon>
+                        <v-btn color="secondary" rounded="xl" @click="logPaymentLink">
+                            <v-icon icon="mdi-content-copy" ></v-icon>
                         </v-btn>
                     </v-col>
                 </v-row>
@@ -78,8 +78,8 @@ const cvu = generateCVU();
                         <v-text-field v-model="amount" label="Monto" type="number"></v-text-field>
                     </v-col>
                     <v-col>
-                        <v-btn color="deep-purple-lighten-2" rounded="xl" @click="logPaymentLink">
-                            <v-icon icon="mdi-content-copy" color="black"></v-icon>
+                        <v-btn color="secondary" rounded="xl" @click="logPaymentLink">
+                            <v-icon icon="mdi-content-copy" ></v-icon>
                         </v-btn>
                     </v-col>
                 </v-row>

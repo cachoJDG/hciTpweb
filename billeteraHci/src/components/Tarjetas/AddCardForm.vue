@@ -1,5 +1,6 @@
 <script setup>
 import AddCardField from "@/components/Tarjetas/AddCardField.vue";
+import { useCreditCardStore } from '@/stores/creditCardStorage.js';
 import { ref, reactive } from 'vue';
 
 const formValues = reactive({
@@ -32,8 +33,6 @@ const fields = [
   }
 ];
 
-import { useCreditCardStore } from '@/stores/creditCardStorage.js';
-
 const creditCardStore = useCreditCardStore();
 
 const handleSubmit = () => {
@@ -43,8 +42,9 @@ const handleSubmit = () => {
     formValues.expirationDate,
     formValues.cvv
   );
-  cards.value = creditCardStore.getUserCreditCards(); // Refresh the cards after adding a new one
 };
+
+
 </script>
 
 <template>
@@ -58,10 +58,10 @@ const handleSubmit = () => {
         v-model="formValues[field.model]"
       />
     </v-form>
-    <v-btn class="button" title="Agregar tarjeta" append-icon="mdi-plus-circle" @click="handleSubmit">
-      <p class="text-black">Agregar Tarjeta</p>
+    <v-btn color="secondary" class="button" title="Agregar tarjeta" append-icon="mdi-plus-circle" @click="handleSubmit">
+      Agregar Tarjeta
       <template v-slot:append>
-        <v-icon color="black"></v-icon>
+        <v-icon></v-icon>
       </template>
     </v-btn>
   </v-container>
