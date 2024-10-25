@@ -32,8 +32,18 @@ const fields = [
   }
 ];
 
+import { useCreditCardStore } from '@/stores/creditCardStorage.js';
+
+const creditCardStore = useCreditCardStore();
+
 const handleSubmit = () => {
-  console.log('Formulario enviado:', formValues);
+  creditCardStore.addCreditCard(
+    formValues.cardNumber,
+    formValues.cardHolder,
+    formValues.expirationDate,
+    formValues.cvv
+  );
+  cards.value = creditCardStore.getUserCreditCards(); // Refresh the cards after adding a new one
 };
 </script>
 

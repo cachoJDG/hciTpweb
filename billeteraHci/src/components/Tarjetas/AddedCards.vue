@@ -2,6 +2,7 @@
 
 import AddCardField from "@/components/Tarjetas/AddCardField.vue";
 import CreditCard from "@/components/Tarjetas/CreditCard.vue";
+import { useCreditCardStore } from '@/stores/creditCardStorage.js';
 
 const props = defineProps({
   num: {
@@ -28,23 +29,20 @@ function deleteCard(index) {
   modal.value.show = false;
 }
 
+const creditCardStore = useCreditCardStore();
 const cards = ref([]);
 
-for (let i = 0; i < props.num; i++) {
-  cards.value.push({
-    title: "mercadoPago",
-    cardNumber: "23123123123213",
-  });
-}
+cards.value = creditCardStore.getUserCreditCards();
+
 </script>
 
 <template>
   <v-container class="container" >
-    <div v-if="num > 0">
+    <div v-if="cards.length > 0">
       <CreditCard v-for="(card,index) in cards"
                   :key="index"
                   :index="index"
-                  :title="card.title"
+                  :title="card.cardHolder"
                   :number="card.cardNumber"
                   @deleteCard="openModal">
       </CreditCard>
@@ -76,9 +74,7 @@ for (let i = 0; i < props.num; i++) {
 </template>
 
 <style scoped>
-.form {
 
-}
 .container{
   width: 100%;
   justify-content: center;
