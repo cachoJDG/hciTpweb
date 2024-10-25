@@ -57,7 +57,6 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 
 const email = ref('');
 const password = ref('');
@@ -71,8 +70,6 @@ const props = defineProps({
   }
 });
 
-
-const router = useRouter();
 const emit = defineEmits(['submit']);
 
 const togglePasswordVisibility = () => {

@@ -24,7 +24,7 @@ export default createVuetify({
       customTheme: {
         dark: true,
         colors: {
-          primary: '#7a1ea1',  // Usa purple con su tonalidad
+          primary: '#7a1ea1', 
           secondary: '#111c80',
           error:  '#96052e'
         },
