@@ -38,13 +38,15 @@ const fields = [
 
 const creditCardStore = useCreditCardStore();
 
-const handleSubmit = () => {
+const handleSubmit = () => { 
   creditCardStore.addCreditCard(
     formValues.cardNumber,
     formValues.cardHolder,
     formValues.expirationDate,
     formValues.cvv
   );
+  // creditCardStore.getUserCreditCards();
+  cards.value = creditCardStore.getUserCreditCards();
 };
 
 

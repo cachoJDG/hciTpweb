@@ -28,23 +28,25 @@ function openModal(index) {
 }
 
 const creditCardStore = useCreditCardStore();
-const cards = ref([]);
+const { creditCards } = creditCardStore;
 
-cards.value = creditCardStore.getUserCreditCards();
+// cards.value = creditCardStore.getUserCreditCards();
 
 
 function deleteCard(index) {
-  console.log("deleteCard", index);
-  console.log(cards[index]);
-  console.log("Card number to be deleted:", cards.value[index].cardNumber);
 
-  creditCardStore.removeCreditCard(cards.value[index].cardNumber);
 
-  cards.value = creditCardStore.getUserCreditCards();
+  console.log(creditCards[index].cardNumber)
+
+  creditCardStore.removeCreditCard(creditCards[index].cardNumber);
+
+  creditCards
+
+  // cards.value = creditCardStore.getUserCreditCards();
+  // cards.value = creditCardStore.getUserCreditCards();
 
   modal.value.show = false;
   isVisible.value = false;
-  console.log(isVisible.value);
 }
 
 
@@ -54,8 +56,8 @@ function deleteCard(index) {
 <template>
   <v-container class="container" >
   
-    <div v-if="cards.length > 0">
-      <CreditCard v-for="(card,index) in cards"
+    <div v-if="creditCards.length > 0">
+      <CreditCard v-for="(card,index) in creditCards"
                   :key="index"
                   :index="index"
                   :title="card.cardHolder"
