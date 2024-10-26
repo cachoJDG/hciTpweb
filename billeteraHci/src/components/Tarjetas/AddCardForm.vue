@@ -19,7 +19,10 @@ const fields = [
   {
     model: 'cardHolder',
     title: 'Titular de la tarjeta',
-    rules: [v => !!v || 'Este campo es requerido']
+    rules: [
+      v => !!v || 'Este campo es requerido',
+      v => /^[a-zA-Z\s]+$/.test(v) || 'Solo se permiten letras y espacios'
+    ]
   },
   {
     model: 'expirationDate',

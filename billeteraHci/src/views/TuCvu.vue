@@ -21,12 +21,35 @@ const handleButtonClick = () => {
 const logPaymentLink = () => {
     const paymentLink = `http://ballon/${alias}/${amount.value}`;
     navigator.clipboard.writeText(paymentLink).then(() => {
-        dialogMessage.value = 'Enlace de pago copiado al portapapeles';
+        dialogMessage.value = 'El contenido se a copiado al portapapeles';
         dialog.value = true;
     }).catch(err => {
         dialogMessage.value = 'Error al copiar el enlace de pago';
         dialog.value = true;
         console.error('Failed to copy payment link: ', err);
+    });
+};
+
+const logcvuLink = () => {
+    const paymentLink = `http://ballon/${alias}/${amount.value}`;
+    navigator.clipboard.writeText(paymentLink).then(() => {
+        dialogMessage.value = 'El contenido se a copiado al portapapeles';
+        dialog.value = true;
+    }).catch(err => {
+        dialogMessage.value = 'Error al copiar el enlace de pago';
+        dialog.value = true;
+        console.error('Failed to copy payment link: ', err);
+    });
+};
+
+const copyCVUToClipboard = () => {
+    navigator.clipboard.writeText(cvu).then(() => {
+        dialogMessage.value = 'El CVU se ha copiado al portapapeles';
+        dialog.value = true;
+    }).catch(err => {
+        dialogMessage.value = 'Error al copiar el CVU';
+        dialog.value = true;
+        console.error('Failed to copy CVU: ', err);
     });
 };
 
@@ -74,7 +97,7 @@ const cvu = generateCVU();
                                                <v-card-item>{{ cvu }}</v-card-item>
                     </v-col>
                     <v-col>
-                        <v-btn color="secondary" rounded="xl" @click="logPaymentLink">
+                        <v-btn color="secondary" rounded="xl" @click="copyCVUToClipboard">
                             <v-icon icon="mdi-content-copy" ></v-icon>
                         </v-btn>
                     </v-col>

@@ -27,18 +27,28 @@ function openModal(index) {
   };
 }
 
+const creditCardStore = useCreditCardStore();
+const cards = ref([]);
+
+cards.value = creditCardStore.getUserCreditCards();
+
 
 function deleteCard(index) {
   console.log("deleteCard", index);
+  console.log(cards[index]);
+  console.log("Card number to be deleted:", cards.value[index].cardNumber);
+
+  creditCardStore.removeCreditCard(cards.value[index].cardNumber);
+
+  cards.value = creditCardStore.getUserCreditCards();
+
   modal.value.show = false;
   isVisible.value = false;
   console.log(isVisible.value);
 }
 
-const creditCardStore = useCreditCardStore();
-const cards = ref([]);
 
-cards.value = creditCardStore.getUserCreditCards();
+
 
 </script>
 <template>

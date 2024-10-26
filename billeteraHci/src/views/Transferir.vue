@@ -5,13 +5,13 @@
         <v-container class="ml-10 mt-1">
             <v-row justify="center" align="center" no-gutters>
                 <v-card class="rounded-xl" color="white" width="1080px">
-                    <v-card-title class="text-h5">Por alias</v-card-title>
+                    <v-card-title class="text-h5">Por alias o cvu</v-card-title>
                     <v-card-text class="text-subtitle-1">A cuentas bancarias o digitales</v-card-text>
 
                     <v-card class="bg-deep-purple-lighten-4 rounded-xl text-black ma-8">
                         <v-row justify="space-around" align="center">
                             <v-col cols="7">
-                                <v-card-item class="font-weight-medium text-subtitle-1">Ingresa el alias</v-card-item>
+                                <v-card-item class="font-weight-medium text-subtitle-1">Ingresa el alias o cvu</v-card-item>
                                 <v-text-field></v-text-field>
                             </v-col>
                             <v-col cols="2">
