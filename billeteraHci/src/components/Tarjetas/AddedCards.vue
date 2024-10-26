@@ -1,6 +1,5 @@
 <script setup >
 
-import AddCardField from "@/components/Tarjetas/AddCardField.vue";
 import CreditCard from "@/components/Tarjetas/CreditCard.vue";
 import { useCreditCardStore } from '@/stores/creditCardStorage.js';
 
@@ -8,6 +7,10 @@ const props = defineProps({
   num: {
     type: Number,
     default: 0
+  },
+  isVisible: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -24,9 +27,12 @@ function openModal(index) {
   };
 }
 
+
 function deleteCard(index) {
   console.log("deleteCard", index);
   modal.value.show = false;
+  isVisible.value = false;
+  console.log(isVisible.value);
 }
 
 const creditCardStore = useCreditCardStore();
@@ -35,7 +41,6 @@ const cards = ref([]);
 cards.value = creditCardStore.getUserCreditCards();
 
 </script>
-
 <template>
   <v-container class="container" >
   
@@ -45,6 +50,7 @@ cards.value = creditCardStore.getUserCreditCards();
                   :index="index"
                   :title="card.cardHolder"
                   :number="card.cardNumber"
+                  :isVisible="isVisible"
                   @deleteCard="openModal">
       </CreditCard>
     </div>
@@ -60,17 +66,6 @@ cards.value = creditCardStore.getUserCreditCards();
         </v-card-actions>
       </v-card>
     </v-dialog>
-
-
-<!--    <v-form class="form">-->
-<!--      <AddCardField class="field" v-for="(field, index) in fields" :key="index" :title="field.title" :rules="field.rules"/>-->
-<!--    </v-form>-->
-<!--    <v-btn class="button" title="Agregar tarjeta" append-icon="mdi-plus-circle">-->
-<!--      <p class="text-black">Agregar Tarjeta</p>-->
-<!--      <template v-slot:append>-->
-<!--        <v-icon color="black"></v-icon>-->
-<!--      </template>-->
-<!--    </v-btn>-->
   </v-container>
 </template>
 
@@ -86,13 +81,6 @@ cards.value = creditCardStore.getUserCreditCards();
   justify-content: center;
 }
 
-.three-dots {
-  cursor: pointer;
-  color: #000;
-  position : absolute;
-  right: 8px;
-  top: 1px;
-}
 
 
 

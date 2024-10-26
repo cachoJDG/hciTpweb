@@ -4,6 +4,10 @@
     index: Number,
     title: String,
     number: String,
+    isVisible:{
+      type: Boolean,
+      default: false
+    }
   });
   defineEmits(['deleteCard']);
 
@@ -13,7 +17,7 @@
   <v-card class="card text-black">
     <v-card-title >{{ title }}</v-card-title>
     <v-card-text class="text">{{number}}</v-card-text>
-    <v-btn class="btn"  density="compact" @click="$emit('deleteCard',index)">
+    <v-btn v-if="isVisible" class="btn" density="compact" @click="$emit('deleteCard', index)">
       <v-icon color="black" size="50px">mdi-delete</v-icon>
     </v-btn>
   </v-card>
