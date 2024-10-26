@@ -1,6 +1,7 @@
 <script setup>
 import BarraLateral from "@/components/BarraLateral.vue";
 import ContextHeader from "@/components/contextHeader.vue";
+import MyButton from "@/components/myButton.vue";
 import MyRectangle from "@/components/MyRectangle.vue";
 import AddCardForm from "@/components/Tarjetas/AddCardForm.vue";
 import AddedCards from "@/components/Tarjetas/AddedCards.vue";
@@ -39,8 +40,7 @@ function toggleOFF() {
           </v-list>
         </v-menu>
         <AddedCards :num="3" :isVisible="isVisible" />
-        <v-btn v-if="isVisible" @click="toggleOFF">LISTO</v-btn>
-
+        <MyButton v-if="isVisible" @click="toggleOFF">Listo</MyButton>
       </MyRectangle>
       <MyRectangle title="Agregar Tarjeta">
         <add-card-form />

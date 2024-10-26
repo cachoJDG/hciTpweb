@@ -40,7 +40,7 @@ const onInput = (event) => {
 
 .form-label {
   font-weight: bold;
-  color: #510cc2;
+  color: #111c80;
   margin-bottom: 5px;
   display: block;
 }

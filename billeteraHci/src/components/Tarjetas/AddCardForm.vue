@@ -2,6 +2,7 @@
 import AddCardField from "@/components/Tarjetas/AddCardField.vue";
 import { useCreditCardStore } from '@/stores/creditCardStorage.js';
 import { ref, reactive } from 'vue';
+import MyButton from "../myButton.vue";
 
 const formValues = reactive({
   cardNumber: '',
@@ -62,13 +63,10 @@ const handleSubmit = () => {
         v-model="formValues[field.model]"
       />
     </v-form>
-    <v-btn color="secondary" class="button" title="Agregar tarjeta" append-icon="mdi-plus-circle" @click="handleSubmit">
-      Agregar Tarjeta
-      <template v-slot:append>
-        <v-icon></v-icon>
-      </template>
-    </v-btn>
-  </v-container>
+    <MyButton class="button" @click="handleSubmit">Agregar Tarjeta
+      <v-icon class="ml-2" right>mdi-credit-card-plus</v-icon>
+    </MyButton>
+    </v-container>  
 </template>
 
 <style scoped>
@@ -85,6 +83,5 @@ const handleSubmit = () => {
 }
 .button {
   width: 100%;
-  background-color: #a055f9;
 }
 </style>

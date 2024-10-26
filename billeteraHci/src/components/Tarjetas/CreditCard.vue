@@ -1,4 +1,6 @@
 <script setup>
+import MyButton from '../myButton.vue';
+
 
   defineProps({
     index: Number,
@@ -17,9 +19,8 @@
   <v-card class="card text-black">
     <v-card-title >{{ title }}</v-card-title>
     <v-card-text class="text">{{number}}</v-card-text>
-    <v-btn v-if="isVisible" class="btn" density="compact" @click="$emit('deleteCard', index)">
-      <v-icon color="black" size="50px">mdi-delete</v-icon>
-    </v-btn>
+      <v-icon color="secondary" class="btn" v-if="isVisible" @click="$emit('deleteCard', index)">mdi-delete</v-icon>
+   
   </v-card>
 </template>
 
@@ -37,11 +38,8 @@
 }
 .btn{
   position: absolute;
-  right: 15px;
-  top: 30px;
-  height: 60px;
-  width: 20px;
-  border-radius: 50%;
-  background-color: #a055f9;
+  right: 10px;
+  top: 10px;
+  font-size: 30px;
 }
 </style>
