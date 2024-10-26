@@ -7,18 +7,18 @@ export const useUserInfoStore = defineStore('userInfo', () => {
   const userName = computed(() => user ? user.name : '')
   const userEmail = computed(() => user ? user.email : '')
 
-  const userLastName = ref('')
-  const userPhone = ref('')
+  const userLastName = computed(() => user ? user.lastName : '')
+  const userPhone = computed(() => user ? user.phone : '')
   const userLanguage = ref('')
 
   const updateUserInfo = (info) => {
     const { name, lastName, phone, email } = info;
     if (user) {
       if (name !== undefined) user.name = name;
+      if (lastName !== undefined) user.lastName = lastName;
+      if (phone !== undefined) user.phone = phone;
       if (email !== undefined) user.email = email;
     }
-    userLastName.value = lastName !== undefined ? lastName : '';
-    userPhone.value = phone !== undefined ? phone : '';
   }
 
   const getAlias = computed(() => {

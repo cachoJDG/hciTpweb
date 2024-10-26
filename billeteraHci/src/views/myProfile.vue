@@ -81,9 +81,10 @@
                 </v-row>
             </v-card-text>
             <v-card-text>
-                <v-btn color="secondary" @click="mostrarCamposContrasenia = !mostrarCamposContrasenia" text>
+                <v-btn color="secondary" class="mb-4" @click="mostrarCamposContrasenia = !mostrarCamposContrasenia" text>
                     ¿Quieres cambiar tu contraseña?
                 </v-btn>
+                
                 <v-form v-if="mostrarCamposContrasenia">
                     <v-text-field
                         v-model="oldPassword"
@@ -99,7 +100,7 @@
                         outlined
                         prepend-icon="mdi-lock-plus"
                     ></v-text-field>
-                    <v-btn color="green" @click="cambiarContrasenia">Cambiar contraseña</v-btn>
+                    <v-btn color="green" @click="cambiarContrasenia" >Cambiar contraseña</v-btn>
                 </v-form>
             </v-card-text>
 
@@ -177,6 +178,13 @@ const activarEdicion = () => {
 // Función para guardar los cambios del perfil
 const guardarPerfil = () => {
     console.log("Perfil guardado:", formData);
+    const userInfo = {
+        name: formData.nombre,
+        lastName: formData.apellido,
+        phone: formData.telefono,
+        email: formData.email
+      };
+    userInfoStore.updateUserInfo(userInfo);
     editando.value = false;
     Object.assign(originalData, formData);
 };
