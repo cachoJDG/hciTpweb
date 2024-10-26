@@ -11,6 +11,7 @@
                     <v-card-text class="custom">
                         <p>Ingresa tu correo para restablecer tu contraseña</p>
                         <v-text-field
+                            v-model="recoveryEmail"
                             label="Correo electrónico"
                             outlined
                             prepend-inner-icon="mdi-email"
@@ -19,7 +20,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-btn text @click="dialog=false">Cancelar</v-btn>
-                        <v-btn color="primary" @click="dialog=false">Enviar</v-btn>
+                        <v-btn color="primary" @click="resetPassword">Enviar</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
@@ -31,12 +32,12 @@
 import LogRegForm from '@/components/logRegForm.vue';
 import { useRouter } from 'vue-router';
 import { useLoginStore } from '@/stores/login';
-
+import { ref } from 'vue';
 
 const router = useRouter();
 const dialog = ref(false);
+const recoveryEmail = ref('');
 const loginStore = useLoginStore();
-
 
 const redirectToRegister = () => {
     router.push({ name: 'Register' });
@@ -47,6 +48,18 @@ const handleLogin = (formData) => {
         router.push({ name: 'myProfile' });
     } else {
         alert('Usuario o contraseña incorrectos');
+    }
+};
+
+const resetPassword = () => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser && storedUser.email === recoveryEmail.value) {
+        storedUser.password = '123456';
+        localStorage.setItem('user', JSON.stringify(storedUser));
+        alert('Tu nueva contraseña es 123456. Por favor, cámbiala después de iniciar sesión.');
+        dialog.value = false;
+    } else {
+        alert('Correo electrónico no encontrado.');
     }
 };
 

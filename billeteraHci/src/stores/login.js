@@ -23,13 +23,16 @@ export const useLoginStore = defineStore('checkLogin', () => {
         user.value = null
     }
 
-    const initiatePasswordReset = (email, newPassword) => {
-        if (user.value && user.value.email === email) {
-            user.value.password = newPassword
-            localStorage.setItem('user', JSON.stringify(user.value))
+    const changePassword = (currentPassword, newPassword) => {
+        const storedUser = JSON.parse(localStorage.getItem('user'))
+        if (storedUser && storedUser.password === currentPassword) {
+            storedUser.password = newPassword
+            user.value = storedUser
+            localStorage.setItem('user', JSON.stringify(storedUser))
+            return true
         }
-
+        return false
     }
 
-    return { user, isAuthenticated, register, login, logout, initiatePasswordReset }
+    return { user, isAuthenticated, register, login, logout, changePassword }
 })
