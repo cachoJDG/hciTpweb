@@ -57,7 +57,7 @@ function deleteCard(index) {
   <v-container class="container" >
   
     <div v-if="creditCards.length > 0">
-      <CreditCard v-for="(card,index) in creditCards"
+      <CreditCard v-for="(card,index) in creditCardStore.getUserCreditCards()"
                   :key="index"
                   :index="index"
                   :title="card.cardHolder"

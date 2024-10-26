@@ -45,8 +45,7 @@ const handleSubmit = () => {
     formValues.expirationDate,
     formValues.cvv
   );
-  // creditCardStore.getUserCreditCards();
-  cards.value = creditCardStore.getUserCreditCards();
+
 };
 
 
