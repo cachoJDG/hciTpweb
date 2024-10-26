@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import inicio from '../views/Inicio.vue';
+import login from '../views/login.vue';
 
 
 const routes = [
@@ -12,7 +13,7 @@ const routes = [
     {
         path: '/',
         name: 'Login',
-        component: () => import('../views/login.vue')
+        component: login
     },
     {
         path: '/miPerfil',
@@ -65,7 +66,7 @@ const routes = [
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
-    routes
+    routes,
 });
 
 export default router;
