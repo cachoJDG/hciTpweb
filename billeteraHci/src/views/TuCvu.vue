@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import BarraLateral from '@/components/BarraLateral.vue';
-import ContextHeader from "@/components/contextHeader.vue";
+import BarraLateral from '@/components/ContextComponents/BarraLateral.vue';
+import ContextHeader from "@/components/ContextComponents/contextHeader.vue";
 import { useUserInfoStore } from '@/stores/userInfo.js';
 import { useWalletStore } from '@/stores/walletStore.js';
 

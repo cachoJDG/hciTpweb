@@ -1,6 +1,4 @@
 <script setup>
-import MyButton from '../myButton.vue';
-
 
   defineProps({
     index: Number,
@@ -20,7 +18,6 @@ import MyButton from '../myButton.vue';
     <v-card-title >{{ title }}</v-card-title>
     <v-card-text class="text">{{number}}</v-card-text>
       <v-icon color="secondary" class="btn" v-if="isVisible" @click="$emit('deleteCard', index)">mdi-delete</v-icon>
-   
   </v-card>
 </template>
 

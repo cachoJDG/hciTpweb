@@ -1,8 +1,8 @@
 <script setup>
-import BarraLateral from "@/components/BarraLateral.vue";
-import ContextHeader from "@/components/contextHeader.vue";
-import MyButton from "@/components/myButton.vue";
-import MyRectangle from "@/components/MyRectangle.vue";
+import BarraLateral from "@/components/ContextComponents/BarraLateral.vue";
+import ContextHeader from "@/components/ContextComponents/contextHeader.vue";
+import MyButton from "@/components/GeneralUse/myButton.vue";
+import MyRectangle from "@/components/GeneralUse/MyRectangle.vue";
 import AddCardForm from "@/components/Tarjetas/AddCardForm.vue";
 import AddedCards from "@/components/Tarjetas/AddedCards.vue";
 import { useUserInfoStore } from "@/stores/userInfo";

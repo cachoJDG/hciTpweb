@@ -3,17 +3,13 @@
     <v-list class="pt-0 pb-0" style="display: flex; flex-direction: column; height: 100%;">
       <RouterLink :to="{ name: 'myProfile' }" class="profile-link">
         <v-list-item class="profile-container">
-          <v-list-item-avatar>
-            <!-- <v-img src="path/to/your/profile-pic.jpg" /> -->
-          </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title class="profile-title" >Hola, {{ userName }} </v-list-item-title>
+            <v-list-item-title class="profile-title">Hola, {{ userName }}</v-list-item-title>
             <span>
-              <p>Mi Perfil
-              <v-icon>mdi-chevron-right</v-icon>
-              </p>
+                <p class="profile-text">Mi Perfil
+                <v-icon>mdi-chevron-right</v-icon>
+                </p>
             </span>
-
           </v-list-item-content>
         </v-list-item>
       </RouterLink>
@@ -21,31 +17,33 @@
       <v-divider></v-divider>
 
       <v-list-item
-  v-for="(item, index) in menuItems"
-  :key="index"
-  :class="{'menu-item--active': $route.name === item.route}" 
-  @click="navigateTo(item.route)"
-  @mouseover="hoverItem = index"
-  @mouseout="hoverItem = null"
-  class="menu-item"
->
-  <v-list-item-content>
-    <v-list-item-title >
-      <v-icon left class="menu-icon">{{ item.icon }}</v-icon>
-      {{ item.title }}
-    </v-list-item-title>
-  </v-list-item-content>
-</v-list-item>
-      <v-divider></v-divider>
-      <v-list-item @click="cerrarSesion" class="mt-auto">
+        v-for="(item, index) in menuItems"
+        :key="index"
+        :class="{'menu-item--active': $route.name === item.route}" 
+        @click="navigateTo(item.route)"
+        @mouseover="hoverItem = index"
+        @mouseout="hoverItem = null"
+        class="menu-item"
+      >
         <v-list-item-content>
           <v-list-item-title>
-        <v-icon left class="menu-icon">mdi-logout</v-icon>
-        Cerrar Sesión
+            <v-icon left class="menu-icon">{{ item.icon }}</v-icon>
+            {{ item.title }}
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-        </v-list>
+
+      <v-divider></v-divider>
+
+      <v-list-item @click="cerrarSesion" class="mt-auto">
+        <v-list-item-content>
+          <v-list-item-title>
+            <v-icon left class="menu-icon">mdi-logout</v-icon>
+            Cerrar Sesión
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
   </v-navigation-drawer>
 </template>
 
@@ -56,15 +54,14 @@ import { ref, defineProps } from 'vue';
 import { useLoginStore } from '@/stores/login';
 import { useUserInfoStore } from '@/stores/userInfo';
 
-
 const { userName } = useUserInfoStore();
 
 const menuItems = ref([
   { title: 'Inicio', icon: 'mdi-home', route: 'Inicio' },
   { title: 'Tu CVU', icon: 'mdi-application', route: 'CVU' },
   { title: 'Transferir', icon: 'mdi-transfer', route: 'Transferir' },
-  { title:'Tarjetas', icon: 'mdi-credit-card-outline', route: 'Tarjetas' },
-  { title: 'Inversiones', icon: 'mdi-finance', route: 'Inversiones'},
+  { title: 'Tarjetas', icon: 'mdi-credit-card-outline', route: 'Tarjetas' },
+  { title: 'Inversiones', icon: 'mdi-finance', route: 'Inversiones' },
 ]);
 
 const hoverItem = ref(null);
@@ -74,7 +71,7 @@ const navigateTo = (route) => {
 };
 
 const cerrarSesion = () => {
-  if(confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+  if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
     useLoginStore().logout();
     router.push({ name: 'Login' });
   }
@@ -141,7 +138,6 @@ const cerrarSesion = () => {
   transform: translateX(5px); /* Mantén el desplazamiento */
 }
 
-
 .menu-icon {
   margin-right: 10px; /* Ajusta el margen derecho según sea necesario */
   transition: color 0.3s ease; /* Transición suave para el color */
@@ -150,5 +146,13 @@ const cerrarSesion = () => {
 .v-list-item:last-child:hover {
   background-color: #7e57c2;
   color: #ffffff;
+}
+
+.profile-text {
+  transition: text-decoration 0.3s ease;
+}
+
+.profile-link:hover .profile-text {
+  text-decoration: underline;
 }
 </style>

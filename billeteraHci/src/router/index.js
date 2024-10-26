@@ -31,12 +31,6 @@ const routes = [
         component: () => import('../views/Movimientos/Cobro.vue')
     },
     {
-        path: '/movimientos/transferencia',
-        name: 'Transferencia',
-        component: () => import('../views/Movimientos/Transferencia.vue')
-    },
-
-    {
         path: '/transferir',
         name: 'Transferir',
 

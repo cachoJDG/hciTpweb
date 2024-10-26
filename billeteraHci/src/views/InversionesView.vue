@@ -1,5 +1,5 @@
 <script setup>
-import MyRectangle from '@/components/MyRectangle.vue';
+import MyRectangle from '@/components/GeneralUse/MyRectangle.vue';
 </script>
 
 <template>

@@ -2,7 +2,7 @@
 import AddCardField from "@/components/Tarjetas/AddCardField.vue";
 import { useCreditCardStore } from '@/stores/creditCardStorage.js';
 import { ref, reactive } from 'vue';
-import MyButton from "../myButton.vue";
+import MyButton from "../GeneralUse/myButton.vue";
 
 const formValues = reactive({
   cardNumber: '',

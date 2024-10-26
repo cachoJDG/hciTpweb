@@ -137,9 +137,9 @@
 </template>
 
 <script setup>
-import BarraLateral from '@/components/BarraLateral.vue';
-import ContextHeader from '@/components/contextHeader.vue';
-import MyRectangle from '@/components/MyRectangle.vue';
+import BarraLateral from '@/components/ContextComponents/BarraLateral.vue';
+import ContextHeader from '@/components/ContextComponents/contextHeader.vue';
+import MyRectangle from '@/components/GeneralUse/MyRectangle.vue';
 import { reactive, ref, computed } from 'vue';
 import { useUserInfoStore } from '@/stores/userInfo.js';
 import { useLoginStore } from '@/stores/login.js'
