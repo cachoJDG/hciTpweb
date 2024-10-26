@@ -1,7 +1,6 @@
 <template>
     <ContextHeader title="Transferir" />
     <BarraLateral/>
-    <v-app>
         <v-container class="ml-10 mt-1">
             <v-row justify="center" align="center" no-gutters>
                 <v-card class="rounded-xl" color="white" width="1080px">
@@ -14,10 +13,10 @@
                                 <v-card-item class="font-weight-medium text-subtitle-1">Ingresa el alias o cvu</v-card-item>
                                 <v-text-field></v-text-field>
                             </v-col>
-                            <v-col cols="2">
-                                <v-btn color="secondary" rounded="xl" size="large" @click="showPopup = true">
-                                    <v-icon icon="fa:fas mdi-arrow-right" size="large"></v-icon>
-                                </v-btn>
+                            <v-col cols="2" class="d-flex align-center">
+                                <MyButton @click="showPopup = true">
+                                    <v-icon icon="mdi-arrow-right" size="large"></v-icon>
+                                </MyButton>
                             </v-col>
                         </v-row>
                     </v-card>
@@ -37,31 +36,38 @@
                                     pago</v-card-item>
                                 <v-text-field v-model="paymentLink"></v-text-field>
                             </v-col>
-                            <v-col cols="2">
-                                <v-btn color="secondary" rounded="xl" size="large" @click="handlePaymentLink">
+                            <v-col cols="2" class="d-flex align-center">
+                                <MyButton @click="handlePaymentLink">
                                     <v-icon icon="mdi-arrow-right" size="large"></v-icon>
-                                </v-btn>
+                                </MyButton>
                             </v-col>
                         </v-row>
                     </v-card>
                 </v-card>
             </v-row>
         </v-container>
-        <v-dialog v-model="showPopup" max-width="500px">
-            <v-card>
-                <v-card-title class="headline">Ingresar Dinero</v-card-title>
-                <v-card-text>
-                    <v-form>
-                        <v-text-field v-model="amount" label="Monto" type="number"></v-text-field>
-                    </v-form>
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="green darken-1" text @click="handlesendMoney">Pagar</v-btn>
-                    <v-btn color="red darken-1" text @click="showPopup = false">Cancelar</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
+        <v-dialog v-model="showPopup" max-width="400px" class="custom-dialog">
+    <v-card>
+        <v-card-title class="headline">Ingresar Dinero</v-card-title>
+        <v-card-text>
+            <v-form>
+                <v-text-field 
+                    v-model="amount" 
+                    label="Monto" 
+                    type="number" 
+                    outlined
+                    dense
+                    class="mt-2"
+                ></v-text-field>
+            </v-form>
+        </v-card-text>
+        <v-card-actions class="justify-center">
+            <v-btn color="error" text @click="showPopup = false">Cancelar</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" text @click="handlesendMoney">Pagar</v-btn>
+        </v-card-actions>
+    </v-card>
+</v-dialog>
         <v-dialog v-model="showPaymentOptions" max-width="500px">
             <v-card>
                 <v-card-title class="headline">Opciones de Pago</v-card-title>
@@ -87,7 +93,6 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-    </v-app>
 </template>
 
 <script setup>
@@ -96,6 +101,7 @@ import BarraLateral from '@/components/BarraLateral.vue';
 import ContextHeader from "@/components/contextHeader.vue";
 import { useWalletStore } from '@/stores/walletStore.js';
 import { useCreditCardStore } from '@/stores/creditCardStorage.js'
+import MyButton from '@/components/myButton.vue';
 
 const showPopup = ref(false);
 const showPaymentOptions = ref(false);
@@ -147,3 +153,38 @@ const payWithAccountBalance = () => {
     }
 };
 </script>
+
+<style scoped>
+.custom-dialog .v-card {
+    padding: 24px;
+    background-color: #b39ddb; /* Lighter blue with more transparency */
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.custom-dialog .v-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    margin-bottom: 8px;
+}
+
+.custom-dialog .v-card-text {
+    color: black;
+}
+
+.custom-dialog .v-card-actions {
+    justify-content: space-between;
+}
+
+.custom-dialog .v-btn {
+    font-weight: bold;
+}
+
+.custom-dialog .v-text-field input {
+    color: black;
+    background-color: black;
+    border-radius: 4px;
+}
+</style>

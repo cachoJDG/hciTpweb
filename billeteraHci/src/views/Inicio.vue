@@ -13,7 +13,6 @@ const transactions = walletStore.getTransactions();
 <template>
     <ContextHeader title="Inicio"/>
     <BarraLateral/>
-    <v-app>
         <div>
             <v-row justify="space-evenly" align="center" class="ma-4">
                 <v-col cols="3">
@@ -54,5 +53,4 @@ const transactions = walletStore.getTransactions();
                 </v-card>
             </v-container>
         </div>
-    </v-app>
-</template>
+``</template>
