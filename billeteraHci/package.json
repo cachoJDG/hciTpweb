@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "vite"
+    "start": "serve -s dist"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
@@ -19,6 +19,7 @@
     "vuetify": "^3.6.11"
   },
   "devDependencies": {
+    "serve": "^13.0.2",
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "sass": "1.77.6",
