@@ -4,6 +4,7 @@ import BarraLateral from '@/components/ContextComponents/BarraLateral.vue';
 import ContextHeader from "@/components/ContextComponents/contextHeader.vue";
 import { useUserInfoStore } from '@/stores/userInfo.js';
 import { useWalletStore } from '@/stores/walletStore.js';
+import MyButton from '@/components/GeneralUse/myButton.vue';
 
 const userInfoStore = useUserInfoStore();
 const alias = userInfoStore.getAlias;
@@ -127,9 +128,9 @@ const cvu = generateCVU();
                         ></v-text-field>
                     </v-col>
                     <v-col cols="12">
-                        <v-btn color="green" block large @click="logPaymentLink">
+                        <MyButton @click="logPaymentLink" class="btn">
                             Generar Link
-                        </v-btn>
+                        </MyButton>
                     </v-col>
                 </v-row>
             </v-card>
@@ -146,3 +147,9 @@ const cvu = generateCVU();
         </v-card>
     </v-dialog>
 </template>
+
+<style scoped>
+.btn {
+    width: 100%;
+}
+</style>
