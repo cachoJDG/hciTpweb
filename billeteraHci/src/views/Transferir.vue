@@ -43,7 +43,9 @@
         </v-card>
       </v-row>
     </v-container>
-    <v-dialog v-model="showPopup" max-width="400px" class="custom-dialog">
+
+
+      <v-dialog v-model="showPopup" max-width="400px" class="custom-dialog">
       <v-card>
         <v-card-title class="headline">Ingresar Dinero</v-card-title>
         <v-card-text>
@@ -58,6 +60,9 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+
+
     <v-dialog v-model="showPaymentOptions" max-width="500px">
       <v-card color="white">
         <v-card-title class="headline">Opciones de Pago</v-card-title>
@@ -83,6 +88,8 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+
     <v-dialog v-model="showCreditCardDropdown" max-width="500px">
       <v-card color="white">
         <v-card-title class="headline">Selecciona una Tarjeta</v-card-title>
@@ -96,14 +103,14 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="payWithSelectedCreditCard">Pagar</v-btn>
+          <v-btn color="success" text @click="payWithSelectedCreditCard">Pagar</v-btn>
           <v-btn color="red darken-1" text @click="showCreditCardDropdown = false">Cancelar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
     <AlertDialogue :message="alertMessage" :type="alertType" v-model:visible="showAlert" />
   </template>
-  
+
   <script setup>
   import { ref } from 'vue';
   import BarraLateral from '@/components/ContextComponents/BarraLateral.vue';
@@ -112,7 +119,7 @@
   import { useCreditCardStore } from '@/stores/creditCardStorage.js'
   import MyButton from '@/components/GeneralUse/myButton.vue';
   import AlertDialogue from '@/components/GeneralUse/alertDialogue.vue';
-  
+
   const showPopup = ref(false);
   const showPaymentOptions = ref(false);
   const showCreditCardDropdown = ref(false);
@@ -124,10 +131,10 @@
   const selectedCreditCard = ref(null);
   const walletStore = useWalletStore();
   const creditCardStorage = useCreditCardStore();
-  
+
   const userCreditCards = creditCardStorage.getUserCreditCards();
   const userCreditCardNumbers = userCreditCards.map(card => card.cardNumber);
-  
+
   const handlesendMoney = () => {
       if (amount.value <= 0) {
           alertMessage.value = 'Ingresa una cantidad de dinero válida';
@@ -147,7 +154,7 @@
           showAlert.value = true;
       }
   };
-  
+
   const handlePaymentLink = () => {
       showPaymentOptions.value = true;
   };
@@ -177,7 +184,7 @@
           handlePaymentLink();
       }
   };
-  
+
   const payWithCreditCard = () => {
       if (userCreditCards.length === 0) {
           alertMessage.value = 'No tienes tarjetas de crédito disponibles';
@@ -185,7 +192,7 @@
           showAlert.value = true;
           return;
       }
-  
+
       showCreditCardDropdown.value = true;
   };
 
@@ -199,7 +206,7 @@
 
       const paymentDetails = extractPaymentLinkDetails(paymentLink.value);
       if (!paymentDetails) return;
-  
+
       walletStore.payWithCreditCard(selectedCreditCard.value, paymentDetails.amount);
 
       console.log(selectedCreditCard.value)
@@ -213,11 +220,11 @@
       alertType.value = 'success';
       showAlert.value = true;
   };
-  
+
   const payWithAccountBalance = () => {
       const paymentDetails = extractPaymentLinkDetails(paymentLink.value);
       if (!paymentDetails) return;
-  
+
       const success = walletStore.removeMoney(paymentDetails.amount, "Pago por Link");
       if (!success) {
           alertMessage.value = 'Saldo insuficiente';
@@ -231,15 +238,15 @@
       }
   };
   </script>
-  
+
   <style scoped>
   .custom-dialog .v-card {
       padding: 24px;
-      background-color: #b39ddb; /* Lighter blue with more transparency */
+      background-color: white;
       border-radius: 8px;
       box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   }
-  
+
   .custom-dialog .v-card-title {
       font-size: 1.5rem;
       font-weight: bold;
@@ -247,19 +254,19 @@
       color: black;
       margin-bottom: 8px;
   }
-  
+
   .custom-dialog .v-card-text {
       color: black;
   }
-  
+
   .custom-dialog .v-card-actions {
       justify-content: space-between;
   }
-  
+
   .custom-dialog .v-btn {
       font-weight: bold;
   }
-  
+
   .custom-dialog .v-text-field input {
       color: black;
       background-color: black;

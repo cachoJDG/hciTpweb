@@ -56,7 +56,7 @@ function generateCVU() {
 }
 
 const cvu = generateCVU();
-</script>  
+</script>
 
 <template>
     <context-header title="Tu CVU" />
@@ -103,7 +103,7 @@ const cvu = generateCVU();
         <v-card class="rounded-xl" color="white" style="width:450px;">
             <v-card-title class="text-h5">Generar link de pago</v-card-title>
             <v-card-subtitle class="text-subtitle-1">Ingresa el monto y genera un link de pago para compartir</v-card-subtitle>
-            <v-row justify="center">
+            <v-row justify="center" class="mt-2">
                 <v-col cols="10">
                     <v-text-field
                         v-model="linkTitle"
