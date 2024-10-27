@@ -136,7 +136,7 @@ const cvu = generateCVU();
         </v-card>
     </v-row>
     <v-dialog v-model="dialog" max-width="400">
-        <v-card>
+        <v-card color="white">
             <v-card-title class="headline">Información</v-card-title>
             <v-card-text>{{ dialogMessage }}</v-card-text>
             <v-card-actions>

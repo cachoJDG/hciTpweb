@@ -34,7 +34,7 @@
                 <v-text-field v-model="paymentLink"></v-text-field>
               </v-col>
               <v-col cols="2" class="d-flex align-center">
-                <MyButton @click="handlePaymentLink">
+                <MyButton @click="validatePaymentLink">
                   <v-icon icon="mdi-arrow-right" size="large"></v-icon>
                 </MyButton>
               </v-col>
@@ -59,12 +59,12 @@
       </v-card>
     </v-dialog>
     <v-dialog v-model="showPaymentOptions" max-width="500px">
-      <v-card>
+      <v-card color="white">
         <v-card-title class="headline">Opciones de Pago</v-card-title>
         <v-card-text>
           <v-row justify="space-around" align="center">
             <v-col cols="5">
-              <v-btn color="blue darken-1" text @click="payWithCreditCard">
+              <v-btn color="blue darken-1" text @click="showCreditCardDropdown = true">
                 <v-icon left>mdi-credit-card</v-icon>
                 Tarjeta
               </v-btn>
@@ -83,6 +83,24 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="showCreditCardDropdown" max-width="500px">
+      <v-card color="white">
+        <v-card-title class="headline">Selecciona una Tarjeta</v-card-title>
+        <v-card-text>
+          <v-select
+            v-model="selectedCreditCard"
+            :items=userCreditCardNumbers
+            item-text="cardNumber"
+            label="Tarjetas de Crédito"
+          ></v-select>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text @click="payWithSelectedCreditCard">Pagar</v-btn>
+          <v-btn color="red darken-1" text @click="showCreditCardDropdown = false">Cancelar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <AlertDialogue :message="alertMessage" :type="alertType" v-model:visible="showAlert" />
   </template>
   
@@ -97,13 +115,18 @@
   
   const showPopup = ref(false);
   const showPaymentOptions = ref(false);
+  const showCreditCardDropdown = ref(false);
   const showAlert = ref(false);
   const alertMessage = ref('');
   const alertType = ref('success');
   const amount = ref(0);
   const paymentLink = ref('');
+  const selectedCreditCard = ref(null);
   const walletStore = useWalletStore();
   const creditCardStorage = useCreditCardStore();
+  
+  const userCreditCards = creditCardStorage.getUserCreditCards();
+  const userCreditCardNumbers = userCreditCards.map(card => card.cardNumber);
   
   const handlesendMoney = () => {
       if (amount.value <= 0) {
@@ -128,9 +151,34 @@
   const handlePaymentLink = () => {
       showPaymentOptions.value = true;
   };
+
+  const extractPaymentLinkDetails = (link) => {
+      const urlParts = link.split('/');
+      if (urlParts.length < 3) {
+          alertMessage.value = 'Link de pago incorrecto';
+          alertType.value = 'failure';
+          showAlert.value = true;
+          return null;
+      }
+      const alias = urlParts[urlParts.length - 2];
+      const amount = parseInt(urlParts[urlParts.length - 1], 10);
+      if (isNaN(amount)) {
+          alertMessage.value = 'Link de pago incorrecto';
+          alertType.value = 'failure';
+          showAlert.value = true;
+          return null;
+      }
+      return { alias, amount };
+  };
+
+  const validatePaymentLink = () => {
+      const paymentDetails = extractPaymentLinkDetails(paymentLink.value);
+      if (paymentDetails) {
+          handlePaymentLink();
+      }
+  };
   
   const payWithCreditCard = () => {
-      const userCreditCards = creditCardStorage.getUserCreditCards();
       if (userCreditCards.length === 0) {
           alertMessage.value = 'No tienes tarjetas de crédito disponibles';
           alertType.value = 'failure';
@@ -138,33 +186,46 @@
           return;
       }
   
-      const urlParts = paymentLink.value.split('/');
-      const alias = urlParts[urlParts.length - 2];
-      const amount = parseInt(urlParts[urlParts.length - 1], 10);
+      showCreditCardDropdown.value = true;
+  };
+
+  const payWithSelectedCreditCard = () => {
+      if (!selectedCreditCard.value) {
+          alertMessage.value = 'Selecciona una tarjeta de crédito';
+          alertType.value = 'failure';
+          showAlert.value = true;
+          return;
+      }
+
+      const paymentDetails = extractPaymentLinkDetails(paymentLink.value);
+      if (!paymentDetails) return;
   
-      walletStore.payWithCreditCard(alias, amount); // todo ver q hacer con esto como para seleccionar cual seria la tarjeta en cuestion
+      walletStore.payWithCreditCard(selectedCreditCard.value, paymentDetails.amount);
+
+      console.log(selectedCreditCard.value)
+      console.log(paymentDetails.amount)
 
       console.log(walletStore.getTransactions());
 
+      showCreditCardDropdown.value = false;
       showPaymentOptions.value = false;
-      alertMessage.value = `Pagaste con tarjeta de crédito a: ${alias}, esta cantidad: ${amount}`;
+      alertMessage.value = `Pagaste con tarjeta de crédito a: ${paymentDetails.alias}, esta cantidad: ${paymentDetails.amount}`;
       alertType.value = 'success';
       showAlert.value = true;
   };
   
   const payWithAccountBalance = () => {
-      const urlParts = paymentLink.value.split('/');
-      const alias = urlParts[urlParts.length - 2];
-      const amount = parseInt(urlParts[urlParts.length - 1], 10);
+      const paymentDetails = extractPaymentLinkDetails(paymentLink.value);
+      if (!paymentDetails) return;
   
-      const success = walletStore.removeMoney(amount, "Pago por Link");
+      const success = walletStore.removeMoney(paymentDetails.amount, "Pago por Link");
       if (!success) {
           alertMessage.value = 'Saldo insuficiente';
           alertType.value = 'failure';
           showAlert.value = true;
       } else {
           showPaymentOptions.value = false;
-          alertMessage.value = `Le mandaste a: ${alias}, esta cantidad: ${amount}`;
+          alertMessage.value = `Le mandaste a: ${paymentDetails.alias}, esta cantidad: ${paymentDetails.amount}`;
           alertType.value = 'success';
           showAlert.value = true;
       }

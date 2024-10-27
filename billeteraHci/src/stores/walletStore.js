@@ -36,7 +36,7 @@ export const useWalletStore = defineStore('wallet', () => {
         if (card && amount > 0) {
             const date = new Date()
             const formattedDate = `${date.toLocaleDateString()} ${date.toTimeString().split(' ')[0].slice(0, 5)}`
-            transactions.value.push({ type: 'remove', typeOfTransaction: 'creditCardPayment', amount, date: formattedDate })
+            transactions.value.push({ type: 'remove', typeOfTransaction: 'Tarjeta de Credito', amount, date: formattedDate })
             return true;
         }
         return false;

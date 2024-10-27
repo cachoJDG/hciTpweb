@@ -30,7 +30,7 @@
 export default {
     props: {
         monto: {
-            type: String,
+            type: Number,
         },
         persona: {
             type: String,

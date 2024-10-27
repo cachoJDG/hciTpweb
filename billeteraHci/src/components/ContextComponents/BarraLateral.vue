@@ -3,14 +3,12 @@
     <v-list class="pt-0 pb-0" style="display: flex; flex-direction: column; height: 100%;">
       <RouterLink :to="{ name: 'myProfile' }" class="profile-link">
         <v-list-item class="profile-container">
-          <v-list-item-content>
             <v-list-item-title class="profile-title">Hola, {{ userName }}</v-list-item-title>
             <span>
                 <p class="profile-text">Mi Perfil
                 <v-icon>mdi-chevron-right</v-icon>
                 </p>
             </span>
-          </v-list-item-content>
         </v-list-item>
       </RouterLink>
 
@@ -25,23 +23,19 @@
         @mouseout="hoverItem = null"
         class="menu-item"
       >
-        <v-list-item-content>
           <v-list-item-title>
             <v-icon left class="menu-icon">{{ item.icon }}</v-icon>
             {{ item.title }}
           </v-list-item-title>
-        </v-list-item-content>
       </v-list-item>
 
       <v-divider></v-divider>
 
       <v-list-item @click="cerrarSesion" class="mt-auto">
-        <v-list-item-content>
           <v-list-item-title>
             <v-icon left class="menu-icon">mdi-logout</v-icon>
             Cerrar Sesión
           </v-list-item-title>
-        </v-list-item-content>
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
