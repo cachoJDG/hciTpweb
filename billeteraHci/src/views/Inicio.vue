@@ -45,15 +45,14 @@ const transactions = walletStore.getTransactions();
                 <v-list bg-color="white" class="pt-0" max-height="400px">
                     <template v-if="transactions.length === 0">
                         <v-list-item>
-                            <v-list-item-content>
                                 <v-list-item-title style="color: #666;">Aquí se verán sus movimientos</v-list-item-title>
-                            </v-list-item-content>
                         </v-list-item>
                     </template>
                     <template v-else>
                         <template v-for="(transaction, index) in transactions.slice().reverse()" :key="index">
-                            <Transferencia v-if="transaction.type === 'remove'" :monto="transaction.amount" persona="Juan Gago" :fecha="transaction.date"/>
-                            <Cobro v-else-if="transaction.type === 'add'" :monto="transaction.amount" persona="Juan Gago" :fecha="transaction.date"/>
+
+                            <Transferencia v-if="transaction.type === 'add'" :monto=transaction.amount persona="Juan Gago" :fecha="transaction.date" :tType="transaction.typeOfTransaction"/>
+                            <Cobro v-else-if="transaction.type === 'remove'" :monto=transaction.amount persona="Juan Gago" :fecha="transaction.date" :tType="transaction.typeOfTransaction"/>
                         </template>
                     </template>
                 </v-list>

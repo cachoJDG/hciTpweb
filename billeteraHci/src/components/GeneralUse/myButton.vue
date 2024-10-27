@@ -1,22 +1,12 @@
 <template>
-    <v-btn @click="handleClick">
+    <v-btn >
         <slot></slot>
     </v-btn>
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
 
-const props = defineProps({
-    onClick: {
-        type: Function,
-        required: true
-    }
-});
 
-const handleClick = (event) => {
-    props.onClick(event);
-};
 </script>
 
 <style scoped>

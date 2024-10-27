@@ -111,18 +111,14 @@
             <v-card-text>
                 <v-list>
                     <v-list-item>
-                        <v-list-item-content>
                             <v-list-item-title>Último inicio de sesión</v-list-item-title>
                             <v-list-item-subtitle>15 de octubre, 2024</v-list-item-subtitle>
-                        </v-list-item-content>
                     </v-list-item>
                     <v-list-item>
-                        <v-list-item-content>
                             <v-list-item-title>Autenticación en dos pasos</v-list-item-title>
                             <v-list-item-subtitle>Desactivado</v-list-item-subtitle>
-                        </v-list-item-content>
                         <v-list-item-action class="pt-4">
-                            <v-btn color="secondary" @click="activarAutenticacion">Activar</v-btn>
+                            <v-btn color="secondary" >Activar</v-btn>
                         </v-list-item-action>
                     </v-list-item>
                 </v-list>
@@ -130,7 +126,7 @@
         </MyRectangle>
         <MyRectangle title="Soporte" width="100%">
             <v-card-text>
-                <v-btn color="secondary" @click="irASoporte">Visitar el Centro de Ayuda</v-btn>
+                <v-btn color="secondary" >Visitar el Centro de Ayuda</v-btn>
             </v-card-text>
         </MyRectangle>
     </v-container>
