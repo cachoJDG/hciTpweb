@@ -114,10 +114,10 @@ function handleWithdraw() {
             <MyRectangle title="Rendimientos recientes">
 
 
-            <v-card class="bg-deep-purple-lighten-3 mb-3 rendimientoCard" v-for="(fecha, index) in fechas">
+            <v-card class="bg-deep-purple-lighten-3 mb-3 pa rendimientoCard" v-for="(fecha, index) in fechas">
               <v-row >
                 <v-col cols="auto">
-                  <v-card-text class="text-black">{{fecha}}</v-card-text>
+                  <v-card-text class="text-black text-h6">{{fecha}}</v-card-text>
                 </v-col>
                 <v-col >
                   <v-card-text class="text-h6 text-end font-weight-bold" style="color: #14808c;">+ 300$</v-card-text>
@@ -168,10 +168,10 @@ function handleWithdraw() {
 }
 
 .rendimientoCard{
-  height: 60px;
-  padding: 0;
+  height: auto;
   align-items: center;
   align-content: center;
 
 }
+
 </style>
