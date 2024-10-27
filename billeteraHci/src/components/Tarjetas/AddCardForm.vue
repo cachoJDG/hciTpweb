@@ -11,6 +11,8 @@ const formValues = reactive({
   cvv: ''
 });
 
+const formRef = ref(null);
+
 const fields = [
   {
     model: 'cardNumber',
@@ -42,7 +44,11 @@ const fields = [
 
 const creditCardStore = useCreditCardStore();
 
-const handleSubmit = () => { 
+const handleSubmit = () => {
+  if(formRef.value.validate()) {
+    return;
+  }
+
   const cardNumberWithoutSpaces = formValues.cardNumber.replace(/\s/g, '');
   creditCardStore.addCreditCard(
     cardNumberWithoutSpaces,
@@ -60,13 +66,15 @@ watch(() => formValues.expirationDate, (newVal) => {
   if (/^\d{2}$/.test(newVal)) {
     formValues.expirationDate = newVal + '/';
   }
+  
+
 });
 
 </script>
 
 <template>
   <v-container class="container">
-    <v-form class="form">
+    <v-form class="form" ref="formRef">
       <AddCardField
         v-for="(field, index) in fields"
         :key="index"
@@ -78,7 +86,7 @@ watch(() => formValues.expirationDate, (newVal) => {
     <MyButton class="button" @click="handleSubmit">Agregar Tarjeta
       <v-icon class="ml-2" right>mdi-credit-card-plus</v-icon>
     </MyButton>
-    </v-container>  
+    </v-container>
 </template>
 
 <style scoped>
