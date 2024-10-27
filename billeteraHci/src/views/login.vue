@@ -19,7 +19,8 @@
                         ></v-text-field>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn text @click="dialog=false">Cancelar</v-btn>
+                        <v-btn color="error" @click="dialog=false">Cancelar</v-btn>
+                        <v-spacer></v-spacer>
                         <v-btn color="primary" @click="resetPassword">Enviar</v-btn>
                     </v-card-actions>
                 </v-card>
@@ -45,9 +46,7 @@ const redirectToRegister = () => {
 
 const handleLogin = (formData) => {
     if (loginStore.login(formData.email, formData.password)) {
-        router.push({ name: 'Inicio' }).then(() => {
-            location.reload();
-        });
+        router.push({ name: 'myProfile' });
     } else {
         alert('Usuario o contraseña incorrectos');
     }
