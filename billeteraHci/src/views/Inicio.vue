@@ -4,8 +4,6 @@ import Transferencia from '../views/Movimientos/Transferencia.vue';
 import BarraLateral from '../components/ContextComponents/BarraLateral.vue';
 import ContextHeader from "@/components/ContextComponents/contextHeader.vue";
 import { useWalletStore } from '@/stores/walletStore.js';
-import MyButton from '@/components/GeneralUse/myButton.vue';
-import router from '@/router';
 
 const walletStore = useWalletStore();
 const balance = walletStore.getBalance();
@@ -15,66 +13,46 @@ const transactions = walletStore.getTransactions();
 <template>
     <ContextHeader title="Inicio"/>
     <BarraLateral/>
-    <v-container class="container">
-            <v-col cols="4">
-                <v-card class="rounded-xl cardy" color="white">
-                    <v-card-title class="text-h4 font-weight-medium" style="color: #333;">Tu saldo</v-card-title>
-                    <v-card-text class="text-h4 font-weight-bold" style="color: #4A148C;">$ {{ balance }}</v-card-text>
-                    <v-card-actions>
+    <v-app>
+        <div>
+            <v-row justify="space-evenly" align="center" class="ma-4">
+                <v-col cols="3">
+                    <v-card class="rounded-xl" color="white" style="width:300px;">
+                        <v-card-title class="text-h4 font-weight-medium">Tu saldo</v-card-title>
+                        <v-card-text class="text-h4 font-weight-bold text-purple-lighten-3">$ {{ balance }}</v-card-text>
+                    </v-card>
+                </v-col>
+                <v-col cols="3">
+                    <v-container>
                         <v-row>
-                            <v-col cols="6">
-                                <MyButton class="btn" @click="router.push({ name: 'Transferir' })">
-                                    Transferir
-                                    <v-icon class="spacing">mdi-arrow-right</v-icon>
-                                </MyButton>
-                            </v-col>
-                            <v-col cols="6">
-                                <MyButton class="btn" @click="router.push({name: 'CVU' })">
-                                    Ver mi CVU
-                                    <v-icon class="spacing">mdi-arrow-right</v-icon>
-                                </MyButton>
-                            </v-col>
+                            <v-btn class="text-black ma-2" rounded="lg" height="80" width="300" size="x-large"
+                                color="deep-purple-lighten-3">Ver mi
+                                cvu</v-btn>
                         </v-row>
-                    </v-card-actions>
-                </v-card>
-            </v-col>
-    </v-container>
-        <v-container>
-            <v-card class="rounded-xl pr-2 overflow-auto" color="white" style="border: 1px solid #ccc;">
-                <v-card-title class="text-h5 font-weight-medium pb-0" style="color: #333;">Movimientos</v-card-title>
-                <v-list bg-color="white" class="pt-0" max-height="400px">
-                    <template v-if="transactions.length === 0">
-                        <v-list-item>
-                            <v-list-item-content>
-                                <v-list-item-title style="color: #666;">Aquí se verán sus movimientos</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </template>
-                    <template v-else>
+                        <v-row>
+                            <v-btn class="text-black ma-2" rounded="lg" height="80" width="300" size="x-large"
+                                color="deep-purple-lighten-3">Transferir
+                                dinero</v-btn>
+                        </v-row>
+                    </v-container>
+                </v-col>
+            </v-row>
+        </div>
+        <div>
+            <v-container>
+                <v-card class="rounded-xl pr-2 overflow-auto" color="white">
+                    <v-card-title class="text-h5 font-weight-medium pb-0">Movimientos</v-card-title>
+                    <v-list bg-color="white" class="pt-0" max-height="400px">
                         <template v-for="(transaction, index) in transactions.slice().reverse()" :key="index">
                             <Transferencia v-if="transaction.type === 'remove'" :monto="transaction.amount" persona="Juan Gago" :fecha="transaction.date"/>
                             <Cobro v-else-if="transaction.type === 'add'" :monto="transaction.amount" persona="Juan Gago" :fecha="transaction.date"/>
                         </template>
-                    </template>
-                </v-list>
-            </v-card>
-        </v-container>
+                    </v-list>
+                    <div class="text-end mt-2">
+                        <v-btn class="text-black mb-4 mr-4" color="deep-purple-lighten-2" size="large">Ver mas</v-btn>
+                    </div>
+                </v-card>
+            </v-container>
+        </div>
+    </v-app>
 </template>
-
-<style scoped>
-.container{
-    width: 100%;
-}
-.btn {
-    width: 100%;
-}
-.spacing {
-    margin-left:10px;
-}
-.cardy {
-    width: 600px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ccc;
-    padding: 16px;
-}
-</style>
