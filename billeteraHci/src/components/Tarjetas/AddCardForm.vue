@@ -1,7 +1,7 @@
 <script setup>
 import AddCardField from "@/components/Tarjetas/AddCardField.vue";
 import { useCreditCardStore } from '@/stores/creditCardStorage.js';
-import { ref, reactive } from 'vue';
+import { ref, reactive, watch } from 'vue';
 import MyButton from "../GeneralUse/myButton.vue";
 
 const formValues = reactive({
@@ -15,7 +15,7 @@ const fields = [
   {
     model: 'cardNumber',
     title: 'Nro. de tarjeta',
-    rules: [v => !!v || 'Este campo es requerido', v => /^\d{10}$/.test(v) || 'Debe contener 10 dígitos']
+    rules: [v => !!v || 'Este campo es requerido', v => /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/.test(v) || 'Debe contener 16 dígitos en formato 0000 0000 0000 0000']
   },
   {
     model: 'cardHolder',
@@ -27,8 +27,11 @@ const fields = [
   },
   {
     model: 'expirationDate',
-    title: 'Fecha de vencimiento (mm/yy)',
-    rules: [v => !!v || 'Este campo es requerido', v => /^(0[1-9]|1[0-2])\/\d{2}$/.test(v) || 'Debe ser una fecha válida']
+    title: 'Fecha de vencimiento (mm/yyyy)',
+    rules: [
+      v => !!v || 'Este campo es requerido',
+      v => /^(0[1-9]|1[0-2])\/\d{4}$/.test(v) || 'Debe ser una fecha válida en formato mm/yyyy'
+    ]
   },
   {
     model: 'cvv',
@@ -40,15 +43,24 @@ const fields = [
 const creditCardStore = useCreditCardStore();
 
 const handleSubmit = () => { 
+  const cardNumberWithoutSpaces = formValues.cardNumber.replace(/\s/g, '');
   creditCardStore.addCreditCard(
-    formValues.cardNumber,
+    cardNumberWithoutSpaces,
     formValues.cardHolder,
     formValues.expirationDate,
     formValues.cvv
   );
-
 };
 
+watch(() => formValues.cardNumber, (newVal) => {
+  formValues.cardNumber = newVal.replace(/\s/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
+});
+
+watch(() => formValues.expirationDate, (newVal) => {
+  if (/^\d{2}$/.test(newVal)) {
+    formValues.expirationDate = newVal + '/';
+  }
+});
 
 </script>
 
