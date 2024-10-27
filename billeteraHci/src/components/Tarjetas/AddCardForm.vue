@@ -11,8 +11,6 @@ const formValues = reactive({
   cvv: ''
 });
 
-
-
 const fields = [
   {
     model: 'cardNumber',
@@ -45,8 +43,12 @@ const fields = [
 const creditCardStore = useCreditCardStore();
 
 const handleSubmit = () => {
+  const isValid = fields.every(field => {
+    const value = formValues[field.model];
+    return field.rules.every(rule => rule(value) === true);
+  });
 
-  if(!formValues.cardNumber || !formValues.cardHolder || !formValues.expirationDate || !formValues.cvv) {
+  if (!isValid) {
     return;
   }
 
@@ -67,8 +69,6 @@ watch(() => formValues.expirationDate, (newVal) => {
   if (/^\d{2}$/.test(newVal)) {
     formValues.expirationDate = newVal + '/';
   }
-
-
 });
 
 </script>
@@ -87,7 +87,7 @@ watch(() => formValues.expirationDate, (newVal) => {
     <MyButton class="button" @click="handleSubmit">Agregar Tarjeta
       <v-icon class="ml-2" right>mdi-credit-card-plus</v-icon>
     </MyButton>
-    </v-container>
+  </v-container>
 </template>
 
 <style scoped>
