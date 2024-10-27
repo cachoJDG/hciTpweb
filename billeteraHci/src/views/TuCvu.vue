@@ -20,8 +20,9 @@ const handleButtonClick = () => {
 
 const logPaymentLink = () => {
     const paymentLink = `http://ballon/${alias}/${amount.value}`;
+    walletStore.addMoney(amount.value);
     navigator.clipboard.writeText(paymentLink).then(() => {
-        dialogMessage.value = 'El contenido se a copiado al portapapeles';
+        dialogMessage.value = 'El link de pago se a copiado al portapapeles';
         dialog.value = true;
     }).catch(err => {
         dialogMessage.value = 'Error al copiar el enlace de pago';
@@ -31,9 +32,8 @@ const logPaymentLink = () => {
 };
 
 const logcvuLink = () => {
-    const paymentLink = `http://ballon/${alias}/${amount.value}`;
     navigator.clipboard.writeText(paymentLink).then(() => {
-        dialogMessage.value = 'El contenido se a copiado al portapapeles';
+        dialogMessage.value = 'El cvu se a copiado al portapapeles';
         dialog.value = true;
     }).catch(err => {
         dialogMessage.value = 'Error al copiar el enlace de pago';
@@ -107,7 +107,7 @@ const cvu = generateCVU();
                 <v-row justify="space-around" align="center">
                     <v-col cols="9">
                         <v-card-item class="font-weight-bold pb-0">Generar link de pago</v-card-item>
-                        <v-text-field v-model="amount" label="Monto" type="number"></v-text-field>
+                        <v-text-field v-model="amount" label="Monto" type="number" :value="null"></v-text-field>
                     </v-col>
                     <v-col>
                         <v-btn color="secondary" rounded="xl" @click="logPaymentLink">
