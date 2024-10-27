@@ -19,7 +19,8 @@
                         ></v-text-field>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn text @click="dialog=false">Cancelar</v-btn>
+                        <v-btn color="error" @click="dialog=false">Cancelar</v-btn>
+                        <v-spacer></v-spacer>
                         <v-btn color="primary" @click="resetPassword">Enviar</v-btn>
                     </v-card-actions>
                 </v-card>
