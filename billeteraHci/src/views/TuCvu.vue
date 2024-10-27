@@ -46,6 +46,7 @@ const copyCVUToClipboard = () => {
         dialog.value = true;
         console.error('Failed to copy CVU: ', err);
     });
+    handleButtonClick();
 };
 
 function generateCVU() {

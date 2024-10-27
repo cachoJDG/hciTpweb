@@ -22,7 +22,7 @@
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "sass": "1.77.6",
-    "serve": "^14.2.4",
+    "serve": "14.2.4",
     "unplugin-auto-import": "^0.17.6",
     "unplugin-fonts": "^1.1.1",
     "unplugin-vue-components": "^0.27.2",

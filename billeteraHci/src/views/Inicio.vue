@@ -62,7 +62,7 @@ const toggleBalanceVisibility = () => {
                                                 </v-list-item>
                                         </template>
                                         <template v-else>
-                                                <template v-for="(transaction, index) in transactions.slice().reverse()" :key="index">
+                                                <template v-for="(transaction, index) in transactions.slice().reverse().slice(0, 3)" :key="index">
 
                                                         <Transferencia v-if="transaction.type === 'add'" :monto=transaction.amount persona="Juan Gago" :fecha="transaction.date" :tType="transaction.typeOfTransaction"/>
                                                         <Cobro v-else-if="transaction.type === 'remove'" :monto=transaction.amount persona="Juan Gago" :fecha="transaction.date" :tType="transaction.typeOfTransaction"/>
