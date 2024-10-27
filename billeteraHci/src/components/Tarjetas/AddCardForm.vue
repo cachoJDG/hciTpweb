@@ -11,7 +11,7 @@ const formValues = reactive({
   cvv: ''
 });
 
-const formRef = ref(null);
+
 
 const fields = [
   {
@@ -45,7 +45,8 @@ const fields = [
 const creditCardStore = useCreditCardStore();
 
 const handleSubmit = () => {
-  if(formRef.value.validate()) {
+
+  if(!formValues.cardNumber || !formValues.cardHolder || !formValues.expirationDate || !formValues.cvv) {
     return;
   }
 
@@ -66,7 +67,7 @@ watch(() => formValues.expirationDate, (newVal) => {
   if (/^\d{2}$/.test(newVal)) {
     formValues.expirationDate = newVal + '/';
   }
-  
+
 
 });
 
@@ -74,7 +75,7 @@ watch(() => formValues.expirationDate, (newVal) => {
 
 <template>
   <v-container class="container">
-    <v-form class="form" ref="formRef">
+    <v-form class="form">
       <AddCardField
         v-for="(field, index) in fields"
         :key="index"
