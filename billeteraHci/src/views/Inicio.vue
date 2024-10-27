@@ -69,7 +69,15 @@ const toggleBalanceVisibility = () => {
                                                 </template>
                                         </template>
                                 </v-list>
+
+
+                          <div class="text-end">
+                          <my-button class="verMas text-end" @click="">
+                            Ver mas
+                          </my-button>
+                          </div>
                         </v-card>
+
                 </v-container>
 </template>
 
@@ -92,5 +100,8 @@ const toggleBalanceVisibility = () => {
 .eye-icon {
         cursor: pointer;
         margin-left: 10px;
+}
+.verMas{
+  margin: 10px;
 }
 </style>

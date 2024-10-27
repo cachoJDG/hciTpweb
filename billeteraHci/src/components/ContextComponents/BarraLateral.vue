@@ -17,7 +17,7 @@
       <v-list-item
         v-for="(item, index) in menuItems"
         :key="index"
-        :class="{'menu-item--active': $route.name === item.route}" 
+        :class="{'menu-item--active': $route.name === item.route}"
         @click="navigateTo(item.route)"
         @mouseover="hoverItem = index"
         @mouseout="hoverItem = null"
@@ -56,6 +56,7 @@ const menuItems = ref([
   { title: 'Transferir', icon: 'mdi-transfer', route: 'Transferir' },
   { title: 'Tarjetas', icon: 'mdi-credit-card-outline', route: 'Tarjetas' },
   { title: 'Inversiones', icon: 'mdi-finance', route: 'Inversiones' },
+  { title: 'Movimientos', icon: 'mdi-magnify', route: 'Movimientos' },
 ]);
 
 const hoverItem = ref(null);

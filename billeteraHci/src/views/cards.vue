@@ -12,7 +12,7 @@ const isVisible = ref(false); // Variable para controlar visibilidad del botón
 
 function toggleVisibility() {
   isVisible.value = true; // Cambia a true cuando seleccionas la opción del menú
-} 
+}
 
 function toggleOFF() {
   isVisible.value = false; // Cambia a false cuando seleccionas la opción del menú
@@ -40,7 +40,10 @@ function toggleOFF() {
           </v-list>
         </v-menu>
         <AddedCards :num="3" :isVisible="isVisible" />
-        <MyButton v-if="isVisible" @click="toggleOFF">Listo</MyButton>
+        <div class="text-end">
+          <MyButton v-if="isVisible" @click="toggleOFF">Listo</MyButton>
+          </div>
+
       </MyRectangle>
       <MyRectangle title="Agregar Tarjeta">
         <add-card-form />

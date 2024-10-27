@@ -49,6 +49,10 @@ const routes = [
         name: 'Inversiones',
         component: () => import('../views/InversionesView.vue')
     },
+    {   path: '/movimeintos',
+    name: 'Movimientos',
+    component: () => import('../views/movimientos.vue')
+    },
     {
         // If no page found
         path: '/:pathMatch(.*)*',
