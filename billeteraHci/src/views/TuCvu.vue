@@ -10,18 +10,22 @@ const alias = userInfoStore.getAlias;
 
 const walletStore = useWalletStore();
 
-const amount = ref(0);
+const amount = ref(null);
 const dialog = ref(false);
 const dialogMessage = ref('');
+const paylink = ref('');
+const linkTitle = ref('');
 
 const handleButtonClick = () => {
-    walletStore.addMoney(200);
+    walletStore.addMoney(200, "Transferencia");
 };
 
 const logPaymentLink = () => {
-    const paymentLink = `http://ballon/${alias}/${amount.value}`;
-    walletStore.addMoney(amount.value);
-    navigator.clipboard.writeText(paymentLink).then(() => {
+    const paylinkValue = `http://ballon//${linkTitle.value}/${alias}/${amount.value}`;
+    paylink.value = paylinkValue;
+
+    walletStore.addMoney(parseInt(amount.value), "Link de Pago");
+    navigator.clipboard.writeText(paylinkValue).then(() => {
         dialogMessage.value = 'El link de pago se a copiado al portapapeles';
         dialog.value = true;
     }).catch(err => {
@@ -31,16 +35,6 @@ const logPaymentLink = () => {
     });
 };
 
-const logcvuLink = () => {
-    navigator.clipboard.writeText(paymentLink).then(() => {
-        dialogMessage.value = 'El cvu se a copiado al portapapeles';
-        dialog.value = true;
-    }).catch(err => {
-        dialogMessage.value = 'Error al copiar el enlace de pago';
-        dialog.value = true;
-        console.error('Failed to copy payment link: ', err);
-    });
-};
 
 const copyCVUToClipboard = () => {
     navigator.clipboard.writeText(cvu).then(() => {
@@ -70,7 +64,7 @@ const cvu = generateCVU();
     <v-row justify="center" class="ma-15">
         <v-card class="rounded-xl" color="white" style="width:450px;">
             <v-card-title class="text-h5">Datos de Pago</v-card-title>
-            <v-card-text class="text-subtitle-1">Comparte tu enlace de pago o alias para recibir dinero de cuentas
+            <v-card-text class="text-subtitle-1">Comparte tus datos para recibir dinero de cuentas
                 bancarias o digitales</v-card-text>
             <v-card class="bg-deep-purple-lighten-4 rounded-xl text-black ma-2">
                 <v-row justify="space-around" align="center">
@@ -103,19 +97,41 @@ const cvu = generateCVU();
                     </v-col>
                 </v-row>
             </v-card>
-            <v-card class="bg-deep-purple-lighten-4 rounded-xl text-black ma-2">
-                <v-row justify="space-around" align="center">
-                    <v-col cols="9">
-                        <v-card-item class="font-weight-bold pb-0">Generar link de pago</v-card-item>
-                        <v-text-field v-model="amount" label="Monto" type="number" :value="null"></v-text-field>
+        </v-card>
+    </v-row>
+    <v-row justify="center" class="ma-15">
+        <v-card class="rounded-xl" color="white" style="width:450px;">
+            <v-card-title class="text-h5">Generar link de pago</v-card-title>
+            <v-card-subtitle class="text-subtitle-1">Ingresa el monto y genera un link de pago para compartir</v-card-subtitle>
+            <v-row justify="center">
+                <v-col cols="10">
+                    <v-text-field
+                        v-model="linkTitle"
+                        label="Ingresa el Título del Link"
+                        type="text"
+                        class="mb-2"
+                    ></v-text-field>
+                </v-col>
+            </v-row>
+            <v-card class="bg-deep-purple-lighten-4 rounded-xl text-black ma-2 pa-4">
+                <v-row>
+                    <v-col cols="12">
+                        <v-text-field
+                            v-model="amount"
+                            label="Ingresa el Monto"
+                            type="number"
+                            outlined
+                            dense
+                            prepend-inner-icon="mdi-currency-usd"
+                            class="mb-2"
+                        ></v-text-field>
                     </v-col>
-                    <v-col>
-                        <v-btn color="secondary" rounded="xl" @click="logPaymentLink">
-                            <v-icon icon="mdi-content-copy" ></v-icon>
+                    <v-col cols="12">
+                        <v-btn color="green" block large @click="logPaymentLink">
+                            Generar Link
                         </v-btn>
                     </v-col>
                 </v-row>
-                <v-card-item class="font-weight-light pt-2">Un link de pago se lo puedes compartir a alguien y te tendra que pagar exactamente ese monto</v-card-item>
             </v-card>
         </v-card>
     </v-row>

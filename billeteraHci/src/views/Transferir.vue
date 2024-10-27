@@ -112,7 +112,7 @@
           showAlert.value = true;
           return;
       }
-      const success = walletStore.removeMoney(amount.value);
+      const success = walletStore.removeMoney(amount.value, "Transferencia enviada");
       if (!success) {
           alertMessage.value = 'Saldo insuficiente';
           alertType.value = 'failure';
@@ -142,7 +142,10 @@
       const alias = urlParts[urlParts.length - 2];
       const amount = parseInt(urlParts[urlParts.length - 1], 10);
   
-      walletStore.payWithCreditCard(alias, amount);
+      walletStore.payWithCreditCard(alias, amount); // todo ver q hacer con esto como para seleccionar cual seria la tarjeta en cuestion
+
+      console.log(walletStore.getTransactions());
+
       showPaymentOptions.value = false;
       alertMessage.value = `Pagaste con tarjeta de crédito a: ${alias}, esta cantidad: ${amount}`;
       alertType.value = 'success';
@@ -154,7 +157,7 @@
       const alias = urlParts[urlParts.length - 2];
       const amount = parseInt(urlParts[urlParts.length - 1], 10);
   
-      const success = walletStore.removeMoney(amount);
+      const success = walletStore.removeMoney(amount, "Pago por Link");
       if (!success) {
           alertMessage.value = 'Saldo insuficiente';
           alertType.value = 'failure';

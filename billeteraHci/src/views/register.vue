@@ -20,8 +20,12 @@ import { useLoginStore } from '@/stores/login.js';
 const loginStore = useLoginStore();
 
 const handleRegister = (formData) => {
-    loginStore.register(formData.name, formData.email, formData.password)
-    router.push({ name: 'myProfile' });
+    loginStore.register(formData.name, formData.email, formData.password);
+
+
+    router.push({ name: 'Inicio' }).then(() => {
+        location.reload();
+    });
 
 };
 </script>

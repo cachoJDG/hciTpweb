@@ -4,10 +4,10 @@
             <div>
                 <v-row justify="space-evenly">
                     <v-col cols="2">
-                        <v-card-item class="text-h6 font-weight-bold pb-0 ma-0">Transferencia</v-card-item>
+                        <v-card-item class="text-h6 font-weight-bold pb-0 ma-0">{{ tType }}</v-card-item>
                     </v-col>
                     <v-col cols="2">
-                        <v-card-item class="text-h6 text-teal-lighten-1 font-weight-bold pb-0 ma-0">+$ {{ monto
+                        <v-card-item class="text-h6 text-red-darken-1 font-weight-bold pb-0 ma-0">-$ {{ monto
                             }}</v-card-item>
                     </v-col>
                 </v-row>
@@ -36,6 +36,9 @@ export default {
             type: String,
         },
         fecha: {
+            type: String,
+        },
+        tType: {
             type: String,
         },
 

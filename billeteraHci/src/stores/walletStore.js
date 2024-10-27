@@ -10,21 +10,21 @@ export const useWalletStore = defineStore('wallet', () => {
 
     const balance = computed(() => balanceValue.value)
 
-    const addMoney = (amount) => {
+    const addMoney = (amount, typeOfTransaction) => {
         if (amount > 0) {
             balanceValue.value += amount
             const date = new Date()
             const formattedDate = `${date.toLocaleDateString()} ${date.toTimeString().split(' ')[0].slice(0, 5)}`
-            transactions.value.push({ type: 'add', amount, date: formattedDate })
+            transactions.value.push({ type: 'add', typeOfTransaction, amount, date: formattedDate })
         }
     }
 
-    const removeMoney = (amount) => {
+    const removeMoney = (amount, typeOfTransaction) => {
         if (amount > 0 && balanceValue.value >= amount) {
             balanceValue.value -= amount
             const date = new Date()
             const formattedDate = `${date.toLocaleDateString()} ${date.toTimeString().split(' ')[0].slice(0, 5)}`
-            transactions.value.push({ type: 'remove', amount, date: formattedDate })
+            transactions.value.push({ type: 'remove', typeOfTransaction, amount, date: formattedDate })
             return true;
         }
         return false;
@@ -36,8 +36,10 @@ export const useWalletStore = defineStore('wallet', () => {
         if (card && amount > 0) {
             const date = new Date()
             const formattedDate = `${date.toLocaleDateString()} ${date.toTimeString().split(' ')[0].slice(0, 5)}`
-            transactions.value.push({ type: 'creditCardPayment', amount, day, formattedDate })
+            transactions.value.push({ type: 'remove', typeOfTransaction: 'creditCardPayment', amount, date: formattedDate })
+            return true;
         }
+        return false;
     }
 
     const getBalance = () => {
