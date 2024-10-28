@@ -80,7 +80,7 @@ function handleWithdraw() {
       <v-card-title class="headline">Retirar dinero</v-card-title>
       <v-card-text class="text-h7 font-weight-medium pb-0 ">Actualmente estas invirtiendo: </v-card-text>
       <v-card-text class="text-h5 font-weight-bold pt-0 pb-5 ma-0" style="color: #14808c;">{{ investedAmmount }}$</v-card-text>
-      <!--      <v-card-text class="text-h7 font-weight-medium mb-0">¿Cuanto deseas inverir?</v-card-text>-->
+
       <v-card-text class="mt-0">
         <v-form>
           <v-text-field v-model="ammountToWithdraw" label="¿Cuanto deseas retirar?" type="number" outlined dense class="mt-2"></v-text-field>

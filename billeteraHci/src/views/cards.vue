@@ -8,14 +8,14 @@ import AddedCards from "@/components/Tarjetas/AddedCards.vue";
 import { useUserInfoStore } from "@/stores/userInfo";
 
 const userName = useUserInfoStore().userName;
-const isVisible = ref(false); // Variable para controlar visibilidad del botón
+const isVisible = ref(false);
 
 function toggleVisibility() {
-  isVisible.value = true; // Cambia a true cuando seleccionas la opción del menú
+  isVisible.value = true;
 }
 
 function toggleOFF() {
-  isVisible.value = false; // Cambia a false cuando seleccionas la opción del menú
+  isVisible.value = false;
 }
 </script>
 
@@ -32,7 +32,7 @@ function toggleOFF() {
               mdi-dots-vertical
             </v-icon>
           </template>
-          <!-- Opciones dentro del menú -->
+
           <v-list>
             <v-list-item @click="toggleVisibility">
               <v-list-item-title>Eliminar una tarjeta</v-list-item-title>

@@ -4,18 +4,18 @@
  * Framework documentation: https://vuetifyjs.com`
  */
 
-// Styles
+
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 
-//icons
-import '@fortawesome/fontawesome-free/css/all.css' // Ensure your project is capable of handling css files
 
-// Composables
+import '@fortawesome/fontawesome-free/css/all.css'
+
+
 import { createVuetify } from 'vuetify'
 import { aliases, mdi} from "vuetify/iconsets/mdi";
 
-// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+
 export default createVuetify({
   theme: {
     defaultTheme: 'customTheme',
@@ -23,7 +23,7 @@ export default createVuetify({
       customTheme: {
         dark: true,
         colors: {
-          primary: '#7a1ea1', 
+          primary: '#7a1ea1',
           secondary: '#111c80',
           error:  '#96052e',
           background: '#f2e6ff'

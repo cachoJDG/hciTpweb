@@ -30,7 +30,7 @@ function openModal(index) {
 const creditCardStore = useCreditCardStore();
 const { creditCards } = creditCardStore;
 
-// cards.value = creditCardStore.getUserCreditCards();
+
 
 
 function deleteCard(index) {
@@ -40,10 +40,9 @@ function deleteCard(index) {
 
   creditCardStore.removeCreditCard(creditCards[index].cardNumber);
 
-  creditCards
 
-  // cards.value = creditCardStore.getUserCreditCards();
-  // cards.value = creditCardStore.getUserCreditCards();
+
+
 
   modal.value.show = false;
   isVisible.value = false;
@@ -55,7 +54,7 @@ function deleteCard(index) {
 </script>
 <template>
   <v-container class="container" >
-  
+
     <div v-if="creditCards.length > 0">
       <CreditCard v-for="(card,index) in creditCardStore.getUserCreditCards()"
                   :key="index"

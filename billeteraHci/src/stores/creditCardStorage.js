@@ -1,11 +1,11 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { useLoginStore } from './login.js'  // Importa la tienda de login para acceder al usuario actual
+import { useLoginStore } from './login.js'
 
 export const useCreditCardStore = defineStore('creditCard', () => {
     const creditCards = ref([])
 
-    const { user } = useLoginStore()  // Accede al usuario actual
+    const { user } = useLoginStore()
 
     const addCreditCard = (cardNumber, cardHolder, expirationDate, cvv) => {
         if (user) {
@@ -14,7 +14,7 @@ export const useCreditCardStore = defineStore('creditCard', () => {
                 cardHolder,
                 expirationDate,
                 cvv,
-                userEmail: user.email  // Asocia la tarjeta al email del usuario ya que cada usuario tiene distintas y como manejamos pinia no quiero q las puedan compartir
+                userEmail: user.email
             }
             creditCards.value.push(newCard)
         }

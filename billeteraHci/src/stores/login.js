@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import users from '../api/users.json' // Import the JSON data
+import users from '../api/users.json'
 
 export const useLoginStore = defineStore('checkLogin', () => {
     const user = ref(JSON.parse(localStorage.getItem('user')) || null)
@@ -18,7 +18,7 @@ export const useLoginStore = defineStore('checkLogin', () => {
             return true
         }
 
-        // Check against the users in the JSON file
+
         const foundUser = users.find(u => u.email === email && u.password === password)
         if (foundUser) {
             user.value = foundUser

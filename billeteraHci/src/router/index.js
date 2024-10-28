@@ -54,7 +54,7 @@ const routes = [
     component: () => import('../views/movimientos.vue')
     },
     {
-        // If no page found
+
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
         component: () => import('../views/NotFound.vue')

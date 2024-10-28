@@ -15,7 +15,7 @@
             <v-card-text>
                 <v-form ref="form">
                     <v-row>
-                        <!-- Nombre -->
+
                         <v-col cols="6">
                             <v-text-field
                                 v-model="formData.nombre"
@@ -28,7 +28,7 @@
 
 
 
-                        <!-- Teléfono -->
+
                         <v-col cols="12" sm="6">
                             <v-text-field
                                 v-model="formData.telefono"
@@ -40,7 +40,7 @@
                             />
                         </v-col>
 
-                        <!-- Email -->
+
                         <v-col cols="12" sm="12">
                             <v-text-field
                                 v-model="formData.email"
@@ -140,7 +140,6 @@ const mostrarCamposContrasenia = ref(false);
 const oldPassword = ref('');
 const newPassword = ref('');
 
-// Datos iniciales del perfil
 const formData = reactive({
     nombre: userName.value,
     apellido: '---',
@@ -148,21 +147,21 @@ const formData = reactive({
     email: userEmail.value,
 });
 
-// Estado del modo de edición
+
 const editando = ref(false);
 
-// Guardamos los valores originales para poder restaurarlos en caso de cancelar
+
 const originalData = reactive({ ...formData });
 
-// Referencia al formulario (para validar o reiniciar si fuera necesario)
+
 const form = ref(null);
 
-// Función para activar el modo de edición
+
 const activarEdicion = () => {
     editando.value = true;
 };
 
-// Función para guardar los cambios del perfil
+
 const guardarPerfil = () => {
     console.log("Perfil guardado:", formData);
     const userInfo = {
@@ -176,13 +175,13 @@ const guardarPerfil = () => {
     Object.assign(originalData, formData);
 };
 
-// Función para cancelar la edición
+
 const cancelarEdicion = () => {
     Object.assign(formData, originalData);
     editando.value = false;
 };
 
-// Función para cambiar la contraseña
+
 const cambiarContrasenia = () => {
     console.log("Contraseña antigua:", oldPassword.value);
     console.log("Nueva contraseña:", newPassword.value);
@@ -192,20 +191,20 @@ const cambiarContrasenia = () => {
         alert("Error al cambiar la contraseña. Verifique su contraseña actual.");
     }
 
-    // Aquí iría la lógica para cambiar la contraseña en el backend
+
 };
 </script>
 
 <style scoped>
-/* Estilo para la tarjeta */
+
 .v-card .v-card-text{
     padding-bottom: 0px;
 }
 
 .v-card {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px; /* Bordes suaves */
-    position: relative; /* Para el posicionamiento absoluto del botón de edición */
+    border-radius: 8px;
+    position: relative;
 }
 
 .edit-btn {
@@ -223,7 +222,7 @@ const cambiarContrasenia = () => {
     background-color:transparent
 }
 .btn:hover {
-  background-color: #5a5f9e; /* Color ligeramente más oscuro */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Efecto de elevación */
+  background-color: #5a5f9e;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
 }
 </style>

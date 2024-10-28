@@ -52,7 +52,7 @@ const copyCVUToClipboard = () => {
 function generateCVU() {
     let cvu = '';
     for (let i = 0; i < 22; i++) {
-        cvu += Math.floor(Math.random() * 10); // Genera un dígito aleatorio entre 0 y 9
+        cvu += Math.floor(Math.random() * 10);
     }
     return cvu;
 }

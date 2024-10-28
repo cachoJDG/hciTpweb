@@ -16,7 +16,7 @@ The following example assumes a component located at `src/components/MyComponent
 </template>
 
 <script lang="ts" setup>
-  //
+  
 </script>
 ```
 

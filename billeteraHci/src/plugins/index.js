@@ -4,7 +4,7 @@
  * Automatically included in `./src/main.js`
  */
 
-// Plugins
+
 import vuetify from './vuetify'
 import pinia from '@/stores'
 import router from '@/router/index'
