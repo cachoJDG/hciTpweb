@@ -75,9 +75,7 @@ const cvu = generateCVU();
                                                <v-card-item>{{ alias }}</v-card-item>
                     </v-col>
                     <v-col cols="2">
-                        <v-btn color="secondary" rounded="xl" @click="handleButtonClick">
-                            <v-icon icon="mdi-account-edit-outline"></v-icon>
-                        </v-btn>
+
                     </v-col>
                     <v-col>
                         <v-btn color="secondary" rounded="xl" @click="handleButtonClick">

@@ -8,6 +8,9 @@ import { useWalletStore } from '@/stores/walletStore.js';
 import MyButton from '@/components/GeneralUse/myButton.vue';
 import router from '@/router';
 
+
+
+
 const walletStore = useWalletStore();
 const balance = walletStore.getBalance();
 const transactions = walletStore.getTransactions();
@@ -72,7 +75,7 @@ const toggleBalanceVisibility = () => {
 
 
                           <div class="text-end">
-                          <my-button class="verMas text-end" @click="">
+                          <my-button class="verMas text-end" @click="router.push({ name: 'Movimientos' });">
                             Ver mas
                           </my-button>
                           </div>
