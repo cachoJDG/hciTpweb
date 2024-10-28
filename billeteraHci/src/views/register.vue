@@ -20,6 +20,11 @@ import { useLoginStore } from '@/stores/login.js';
 const loginStore = useLoginStore();
 
 const handleRegister = (formData) => {
+
+    if(formData.password.length < 8 || formData.email.includes('@') === false || formData.name === ''){
+        return;
+    }
+
     loginStore.register(formData.name, formData.email, formData.password);
 
 

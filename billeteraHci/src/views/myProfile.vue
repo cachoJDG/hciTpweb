@@ -19,23 +19,14 @@
                         <v-col cols="6">
                             <v-text-field
                                 v-model="formData.nombre"
-                                label="Nombre"
+                                label="Nombre Completo"
                                 :disabled="!editando"
                                 outlined
                                 prepend-icon="mdi-account"
                             />
                         </v-col>
 
-                        <!-- Apellido -->
-                        <v-col cols="6">
-                            <v-text-field
-                                v-model="formData.apellido"
-                                label="Apellido"
-                                :disabled="!editando"
-                                outlined
-                                prepend-icon="mdi-account"
-                            />
-                        </v-col>
+
 
                         <!-- Teléfono -->
                         <v-col cols="12" sm="6">
@@ -50,7 +41,7 @@
                         </v-col>
 
                         <!-- Email -->
-                        <v-col cols="12" sm="6">
+                        <v-col cols="12" sm="12">
                             <v-text-field
                                 v-model="formData.email"
                                 label="Email"
@@ -84,7 +75,7 @@
                 <v-btn color="secondary" class="mb-4" @click="mostrarCamposContrasenia = !mostrarCamposContrasenia" text>
                     ¿Quieres cambiar tu contraseña?
                 </v-btn>
-                
+
                 <v-form v-if="mostrarCamposContrasenia">
                     <v-text-field
                         v-model="oldPassword"

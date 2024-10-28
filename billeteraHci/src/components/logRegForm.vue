@@ -8,7 +8,7 @@
                         v-if="isRegister"
                         v-model="name"
                         type="text"
-                        label="Nombre"
+                        label="Nombre Completo"
                         :rules="[v => !!v || 'Nombre es requerido']"
                         outlined
                         class="mb-4"

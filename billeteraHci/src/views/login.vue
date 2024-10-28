@@ -46,7 +46,7 @@ const redirectToRegister = () => {
 
 const handleLogin = (formData) => {
     if (loginStore.login(formData.email, formData.password)) {
-        router.push({ name: 'myProfile' });
+        router.push({ name: 'Inicio' });
     } else {
         alert('Usuario o contraseña incorrectos');
     }
